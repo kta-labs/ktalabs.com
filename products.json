@@ -1,0 +1,113 @@
+[
+  {
+    "nom": "Retatrutide 10MG",
+    "categorie": "Peptides",
+    "prix": 60,
+    "stock": 26,
+    "description": "Flacon de recherche, 10mg",
+    "image": "images/reta-10mg.jpg"
+  },
+  {
+    "nom": "Retatrutide 20MG",
+    "categorie": "Peptides",
+    "prix": 115,
+    "stock": 32,
+    "description": "Flacon de recherche, 20mg",
+    "image": "images/reta-20mg.jpg"
+  },
+  {
+    "nom": "GHK-Cu 50MG",
+    "categorie": "Peptides",
+    "prix": 40,
+    "stock": 21,
+    "description": "Peptide cuivre, flacon de recherche 50mg",
+    "image": "images/ghk-cu.jpg"
+  },
+  {
+    "nom": "CJC 1295 + Ipamorelin 10MG",
+    "categorie": "Peptides",
+    "prix": 80,
+    "stock": 9,
+    "description": "Analogue GHRH/GHRP, flacon de recherche 10mg",
+    "image": "images/cjc-ipamorelin.jpg"
+  },
+  {
+    "nom": "MT-1 10MG",
+    "categorie": "Peptides",
+    "prix": 40,
+    "stock": 10,
+    "description": "Melanotan 1, flacon de recherche 10mg",
+    "image": "images/mt-1.jpg"
+  },
+  {
+    "nom": "MT-2 10MG",
+    "categorie": "Peptides",
+    "prix": 40,
+    "stock": 2,
+    "description": "Melanotan 2, flacon de recherche 10mg",
+    "image": "images/mt-2.jpg"
+  },
+  {
+    "nom": "Pack Perte De Poids 1",
+    "categorie": "Packs",
+    "prix": 180,
+    "stock": null,
+    "disponibilite": "En stock",
+    "description": "2x Retatrutide 20mg + 2x Bac Water 3ml",
+    "image": "images/pack-perte-de-poids-1.jpg"
+  },
+  {
+    "nom": "Pack Perte De Poids 2",
+    "categorie": "Packs",
+    "prix": 230,
+    "stock": null,
+    "disponibilite": "En stock",
+    "description": "Retatrutide 20mg + Retatrutide 10mg + 2x Bac Water 3ml",
+    "image": "images/pack-perte-de-poids-2.jpg"
+  },
+  {
+    "nom": "Pack Glow Up",
+    "categorie": "Packs",
+    "prix": 180,
+    "stock": null,
+    "disponibilite": "En stock",
+    "description": "2x GHK-Cu 50mg + 2x MT-1/2 10mg + 2x Bac Water 10ml",
+    "image": "images/pack-glow-up.jpg"
+  },
+  {
+    "nom": "Pack Prise De Muscle",
+    "categorie": "Packs",
+    "prix": 230,
+    "stock": null,
+    "disponibilite": "En stock",
+    "description": "3x CJC 1295+Ipamorelin 10mg + 3x Bac Water 3ml",
+    "image": "images/pack-muscle.jpg"
+  },
+  {
+    "nom": "Bac Water 3ML",
+    "categorie": "Diluant",
+    "prix": 5,
+    "stock": null,
+    "disponibilite": "En stock",
+    "description": "Eau bactériostatique, flacon 3ml",
+    "image": "images/bac-water-3ml.jpg"
+  },
+  {
+    "nom": "Bac Water 10ML",
+    "categorie": "Diluant",
+    "prix": 10,
+    "stock": null,
+    "disponibilite": "En stock",
+    "description": "Eau bactériostatique, flacon 10ml",
+    "image": "images/bac-water-10ml.jpg"
+  },
+  {
+    "nom": "Seringues",
+    "categorie": "Accessoires",
+    "prix": 0.80,
+    "stock": null,
+    "disponibilite": "En stock",
+    "description": "Seringue à usage unique",
+    "image": null
+  }
+]
