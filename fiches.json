@@ -1,0 +1,98 @@
+{
+  "retatrutide": {
+    "nom": "Retatrutide",
+    "image": "images/reta-20mg.jpg",
+    "reconstitution": ["1 ml de bac water pour une fiole de 10 mg", "2 ml de bac water pour une fiole de 20 mg"],
+    "a_savoir": "Le retatrutide agit sur 3 hormones clés : GLP-1 (appétit), GIP (gestion des nutriments), Glucagon (brûlage des graisses).",
+    "premiers_effets": "Les premiers effets peuvent se faire ressentir dès la première semaine d'utilisation avec une dose de 0,5 mg mais c'est rare. Les vrais premiers effets de réduction de l'appétit apparaissent en général dans les heures ou le lendemain qui suivent une injection de 1 mg et 2 mg.",
+    "dose": [
+      "0,5 mg la première semaine une fois dans la semaine = 5 unités",
+      "1 mg la deuxième semaine une fois dans la semaine = 10 unités",
+      "2 mg une fois par semaine à partir de la 3ème semaine = 20 unités"
+    ],
+    "dose_note": "Les doses dépendent de vous, si vous ne ressentez aucun effet avec 0,5 mg (ce qui est fort possible) vous pouvez reprendre 0,5 mg dans la même semaine et pareil pour la suite.",
+    "quand": ["Pas de meilleur moment dans la journée", "Essayez de le prendre toujours à la même heure"],
+    "effets": ["Réduction de l'appétit", "Augmentation de la sensation de satiété", "Accélération du métabolisme (davantage de calories brûlées facilement et rapidement)"],
+    "effets_secondaires": ["Rétention d'eau si mauvaise hydratation", "Fatigue temporaire si la dose est trop élevée", "Nausées si la dose de départ est trop élevée"],
+    "note_bas": "Les doses dépendent de vous, si vous ne ressentez aucun effet avec 0,5 mg (ce qui est fort possible) vous pouvez reprendre 0,5 mg dans la même semaine et pareil pour la suite."
+  },
+  "ghk-cu": {
+    "nom": "GHK-Cu",
+    "image": "images/ghk-cu.jpg",
+    "reconstitution": ["3 ml de bac water pour une fiole de 50 mg"],
+    "dose": ["1 mg la première semaine tous les jours = 6 unités", "2 mg la deuxième semaine tous les jours = 12 unités"],
+    "dose_note": "Continuer avec cette dose ou l'ajuster en fonction de votre ressenti.",
+    "quand": ["Le soir avant d'aller dormir", "Essayez de le prendre toujours à la même heure"],
+    "effets": [
+      "Stimule la production de collagène et d'élastine",
+      "Améliore la fermeté et l'élasticité de la peau",
+      "Accélère la cicatrisation et la réparation cutanée",
+      "Réduit l'apparence des rides et ridules",
+      "Apaise les inflammations cutanées et renforce la barrière cutanée",
+      "Améliore l'aspect des marques post-acné"
+    ],
+    "effets_secondaires": [
+      "Brûlure au niveau de la zone d'injection due à la différence de température entre le corps et le peptide — pour l'éviter, laissez la fiole 5 à 10 min hors du frigo avant utilisation pour qu'elle revienne à température ambiante",
+      "Purge possible la première semaine d'utilisation"
+    ],
+    "note_bas": "Tous les effets négatifs peuvent être évités si les doses ne sont pas respectées.",
+    "a_savoir": "Pour un résultat optimal, faire 3 cycles de 8 semaines d'utilisation avec une pause de 2 à 3 semaines entre les cycles. Les premiers résultats peuvent apparaître dès la première semaine d'utilisation, la peau se renouvelant via une purge. Après la purge, la peau est plus lisse, hydratée, élastique et en meilleure santé."
+  },
+  "cjc-ipamorelin": {
+    "nom": "CJC 1295 + Ipamorelin",
+    "image": "images/cjc-ipamorelin.jpg",
+    "reconstitution": ["2 ml de bac water pour une fiole de 10 mg"],
+    "dose": [
+      "0,2 mg la première semaine, tous les jours = 4 unités",
+      "Augmenter progressivement la deuxième semaine de 0,1 mg tous les jours jusqu'à atteindre 0,5 mg soit 10 unités",
+      "Pour rappel : 0,3 mg = 6 unités et 0,4 mg = 8 unités"
+    ],
+    "dose_note": "Continuer avec cette dose ou l'ajuster en fonction de votre ressenti.",
+    "quand": ["Avant d'aller dormir", "1 à 2 heures avant ou après avoir mangé"],
+    "effets": [
+      "Stimule la production d'hormone de croissance (GH)",
+      "Accélère la récupération musculaire",
+      "Améliore la qualité du sommeil",
+      "Accélère la perte de poids",
+      "Favorise la prise de muscle",
+      "Effets anti-âge",
+      "Améliore la régénération des cellules de la peau"
+    ],
+    "effets_secondaires": ["Rétention d'eau si mauvaise hydratation", "Fatigue temporaire si la dose est trop élevée", "Nausées si la dose de départ est trop élevée"],
+    "note_bas": "Tous les effets négatifs peuvent être évités si les doses ne sont pas respectées.",
+    "premiers_effets": "Les premiers effets peuvent se faire ressentir dès la première semaine d'utilisation avec une amélioration de la qualité du sommeil et une meilleure congestion/ressenti musculaire lors des entraînements. Les vrais premiers effets apparaissent après le premier mois d'utilisation avec une augmentation de la masse musculaire et une réduction du bodyfat.",
+    "a_savoir": "CJC 1295 + Ipamorelin agit en synergie pour augmenter la production naturelle d'hormone de croissance (GH). CJC 1295 stimule la sécrétion de GH, Ipamorelin amplifie la libération de GH de manière pulsatile et naturelle."
+  },
+  "mt-1": {
+    "nom": "MT-1",
+    "image": "images/mt-1.jpg",
+    "reconstitution": ["2 ml de bac water pour une fiole de 10 mg"],
+    "dose": [
+      "Phase de bronzage : commencer avec 0,25 mg que vous augmenterez jusqu'à 0,5 mg par jour pendant 7 à 10 jours, soit 5 à 10 unités (5 unités = 0,25 mg et 10 unités = 0,5 mg)",
+      "Phase de maintenance : 0,5 mg soit 10 unités, 3 jours par semaine"
+    ],
+    "quand": ["30 à 60 minutes avant de s'exposer au soleil", "Essayez de le prendre à la même heure"],
+    "effets": ["Augmente la production de mélanine", "Réduit les risques de coups de soleil", "Améliore la capacité de bronzer", "Favorise une pigmentation durable", "Effets mineurs de réduction de l'appétit"],
+    "effets_secondaires": ["Nausées si dose de départ trop élevée", "Fatigue", "Maux de tête", "Peut légèrement noircir les grains de beauté existants"],
+    "note_bas": "Tous les effets négatifs peuvent être évités si les doses ne sont pas respectées.",
+    "combien_de_temps": "Les premiers effets de peau bronzée apparaissent dès la première semaine d'utilisation. Dès que la teinte/bronzage souhaité est atteint, passer en phase de maintenance.",
+    "premiers_effets": "Les premiers effets de peau bronzée apparaissent dès la première semaine d'utilisation."
+  },
+  "mt-2": {
+    "nom": "MT-2",
+    "image": "images/mt-2.jpg",
+    "attention": "Le MT-2 est un peptide puissant. Une dose non adaptée ou trop élevée peut entraîner des effets secondaires.",
+    "reconstitution": ["2 ml de bac water pour une fiole de 10 mg"],
+    "dose": [
+      "Phase de bronzage (1 à 2 semaines) — Semaine 1 : 0,125 mg, 2,5 unités, 3 fois/semaine (ex : lun-mer-ven)",
+      "Phase de bronzage — Semaine 2 : 0,25 mg, 5 unités, 3 fois/semaine (ex : lun-mer-ven)",
+      "Phase de maintenance : 0,5 mg, 10 unités, 2 jours/semaine"
+    ],
+    "quand": ["30 à 60 minutes avant de s'exposer au soleil", "Avant d'aller dormir pour limiter le risque d'effets secondaires"],
+    "effets": ["Stimule la production de mélanine", "Favorise la capacité de bronzage", "Peut réduire l'appétit", "Réduit les risques de coups de soleil", "Peut augmenter la libido chez certaines personnes"],
+    "effets_secondaires": ["Nausées si dose de départ trop élevée", "Fatigue", "Maux de tête", "Peut légèrement noircir les grains de beauté existants"],
+    "note_bas": "Tous les effets négatifs peuvent être évités si les doses ne sont pas respectées.",
+    "combien_de_temps": "Jusqu'à obtenir la teinte souhaitée, puis passer en phase de maintenance. Les résultats varient selon le type de peau, l'exposition au soleil et le respect des doses.",
+    "premiers_effets": "Les premiers effets de peau bronzée apparaissent dès la première semaine d'utilisation."
+  }
+}
