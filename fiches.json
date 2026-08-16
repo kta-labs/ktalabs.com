@@ -13,8 +13,7 @@
     "dose_note": "Les doses dépendent de vous, si vous ne ressentez aucun effet avec 0,5 mg (ce qui est fort possible) vous pouvez reprendre 0,5 mg dans la même semaine et pareil pour la suite.",
     "quand": ["Pas de meilleur moment dans la journée", "Essayez de le prendre toujours à la même heure"],
     "effets": ["Réduction de l'appétit", "Augmentation de la sensation de satiété", "Accélération du métabolisme (davantage de calories brûlées facilement et rapidement)"],
-    "effets_secondaires": ["Rétention d'eau si mauvaise hydratation", "Fatigue temporaire si la dose est trop élevée", "Nausées si la dose de départ est trop élevée"],
-    "note_bas": "Les doses dépendent de vous, si vous ne ressentez aucun effet avec 0,5 mg (ce qui est fort possible) vous pouvez reprendre 0,5 mg dans la même semaine et pareil pour la suite."
+    "effets_secondaires": ["Rétention d'eau si mauvaise hydratation", "Fatigue temporaire si la dose est trop élevée", "Nausées si la dose de départ est trop élevée"]
   },
   "ghk-cu": {
     "nom": "GHK-Cu",
