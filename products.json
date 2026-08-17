@@ -9,7 +9,8 @@
     "ficheId": "retatrutide",
     "image": "images/reta-10mg.jpg",
     "tallyLabel": "Retatrutide 10MG",
-    "tallyQtyField": "qte_reta10"
+    "tallyQtyField": "qte_reta10",
+    "prixPromo": 39
   },
   {
     "sku": "reta20",
@@ -78,8 +79,18 @@
     "prix": 180,
     "stock": null,
     "disponibilite": "En stock",
-    "contenu": ["2x Retatrutide 20mg", "2x Bac Water 3ml", "25 seringues incluses", "Durée : 3 mois et 2 semaines"],
-    "composants": [{"tallyLabel": "Retatrutide 20MG", "qte": 2}],
+    "contenu": [
+      "2x Retatrutide 20mg",
+      "2x Bac Water 3ml",
+      "25 seringues incluses",
+      "Durée : 3 mois et 2 semaines"
+    ],
+    "composants": [
+      {
+        "tallyLabel": "Retatrutide 20MG",
+        "qte": 2
+      }
+    ],
     "image": "images/pack-perte-de-poids-1.jpg",
     "tallyLabel": "Pack perte de poids 1",
     "tallyQtyField": "qte_pack1"
@@ -91,8 +102,23 @@
     "prix": 230,
     "stock": null,
     "disponibilite": "En stock",
-    "contenu": ["Retatrutide 20mg", "Retatrutide 10mg", "2x Bac Water 3ml", "30 seringues incluses", "Durée : 4 mois et 3 semaines"],
-    "composants": [{"tallyLabel": "Retatrutide 20MG", "qte": 1}, {"tallyLabel": "Retatrutide 10MG", "qte": 1}],
+    "contenu": [
+      "Retatrutide 20mg",
+      "Retatrutide 10mg",
+      "2x Bac Water 3ml",
+      "30 seringues incluses",
+      "Durée : 4 mois et 3 semaines"
+    ],
+    "composants": [
+      {
+        "tallyLabel": "Retatrutide 20MG",
+        "qte": 1
+      },
+      {
+        "tallyLabel": "Retatrutide 10MG",
+        "qte": 1
+      }
+    ],
     "image": "images/pack-perte-de-poids-2.jpg",
     "tallyLabel": "Pack perte de poids 2",
     "tallyQtyField": "qte_pack2"
@@ -104,8 +130,23 @@
     "prix": 180,
     "stock": null,
     "disponibilite": "En stock",
-    "contenu": ["2x GHK-Cu 50mg", "2x MT-1 10mg", "2x Bac Water 10ml", "65 seringues incluses", "Durée : 2 mois"],
-    "composants": [{"tallyLabel": "GHK-CU 50MG", "qte": 2}, {"tallyLabel": "MT-1 10MG", "qte": 2}],
+    "contenu": [
+      "2x GHK-Cu 50mg",
+      "2x MT-1 10mg",
+      "2x Bac Water 10ml",
+      "65 seringues incluses",
+      "Durée : 2 mois"
+    ],
+    "composants": [
+      {
+        "tallyLabel": "GHK-CU 50MG",
+        "qte": 2
+      },
+      {
+        "tallyLabel": "MT-1 10MG",
+        "qte": 2
+      }
+    ],
     "image": "images/pack-glow-up.jpg",
     "tallyLabel": "Pack glow up",
     "tallyQtyField": "qte_packglow"
@@ -117,8 +158,18 @@
     "prix": 230,
     "stock": null,
     "disponibilite": "En stock",
-    "contenu": ["3x CJC 1295+Ipamorelin 10mg", "3x Bac Water 3ml", "30 seringues incluses", "Durée : 3 mois"],
-    "composants": [{"tallyLabel": "CJC 1295+Ipamorelin 10MG", "qte": 3}],
+    "contenu": [
+      "3x CJC 1295+Ipamorelin 10mg",
+      "3x Bac Water 3ml",
+      "30 seringues incluses",
+      "Durée : 3 mois"
+    ],
+    "composants": [
+      {
+        "tallyLabel": "CJC 1295+Ipamorelin 10MG",
+        "qte": 3
+      }
+    ],
     "image": "images/pack-muscle.jpg",
     "tallyLabel": "Pack prise de muscle",
     "tallyQtyField": "qte_packmuscle"
@@ -153,7 +204,7 @@
     "sku": "seringues",
     "nom": "Seringues",
     "categorie": "Accessoires",
-    "prix": 0.80,
+    "prix": 0.8,
     "stock": null,
     "disponibilite": "En stock",
     "description": "Seringue à usage unique",
