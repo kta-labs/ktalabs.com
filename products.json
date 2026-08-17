@@ -9,8 +9,7 @@
     "ficheId": "retatrutide",
     "image": "images/reta-10mg.jpg",
     "tallyLabel": "Retatrutide 10MG",
-    "tallyQtyField": "qte_reta10",
-    "prixPromo": 39
+    "tallyQtyField": "qte_reta10"
   },
   {
     "sku": "reta20",
