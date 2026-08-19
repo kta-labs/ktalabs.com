@@ -244,6 +244,10 @@
   <div id="avisFormSection" style="display:none">
     <h2 class="section-title">Laisser un avis</h2>
     <form class="avis-form" id="avisForm">
+      <div style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden" aria-hidden="true">
+        <label for="f_avisWebsite">Ne pas remplir</label>
+        <input type="text" id="f_avisWebsite" name="website" tabindex="-1" autocomplete="off">
+      </div>
       <div class="form-row">
         <label>N° de commande *</label>
         <input id="f_avisCommande" value="CMD-" required>
@@ -291,12 +295,18 @@
       <a href="mailto:ktalabs.contact@gmail.com">ktalabs.contact@gmail.com</a>
     </div>
   </div>
+  <div style="margin:10px 0">
+    <a href="mentions-legales.html" style="color:var(--grey-text);text-decoration:none;margin:0 8px">Mentions légales</a>·
+    <a href="cgv.html" style="color:var(--grey-text);text-decoration:none;margin:0 8px">CGV</a>·
+    <a href="confidentialite.html" style="color:var(--grey-text);text-decoration:none;margin:0 8px">Confidentialité</a>
+  </div>
   KTA Labs
 </footer>
 
 <script>
 const SUBMIT_AVIS_URL = "https://nathand.app.n8n.cloud/webhook/soumettre-avis";
 let selectedNote = 0;
+let avisFormShownAt = null;
 
 function stars(note) {
   return '★'.repeat(note) + '☆'.repeat(5 - note);
@@ -364,7 +374,10 @@ document.getElementById('addAvisBtn').addEventListener('click', () => {
   const isHidden = section.style.display === 'none';
   section.style.display = isHidden ? '' : 'none';
   btn.textContent = isHidden ? 'Annuler' : 'Laisser un avis';
-  if (isHidden) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  if (isHidden) {
+    avisFormShownAt = Date.now();
+    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 });
 
 document.querySelectorAll('.star-pick').forEach(star => {
@@ -395,7 +408,9 @@ document.getElementById('avisForm').addEventListener('submit', async (e) => {
       note: selectedNote,
       commentaire: document.getElementById('f_avisCommentaire').value.trim(),
       afficherPrenom: document.getElementById('f_afficherPrenom').checked,
-      afficherProduit: document.getElementById('f_afficherProduit').checked
+      afficherProduit: document.getElementById('f_afficherProduit').checked,
+      honeypot: document.getElementById('f_avisWebsite').value,
+      elapsedMs: avisFormShownAt ? (Date.now() - avisFormShownAt) : 0
     };
     const photoFile = document.getElementById('f_avisPhoto').files[0];
     if (photoFile) {

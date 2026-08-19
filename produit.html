@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KTA Labs — Fiche produit</title>
+<link rel="icon" href="images/logo.png">
+<style>
+  :root {
+    --black: #16204a;
+    --navy-deep: #0e1730;
+    --blue-accent: #4d6fb8;
+    --grey-text: #6b7280;
+    --border: #e8eaf1;
+    --bg: #f8f9fc;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--black);
+  }
+  .top-accent {
+    height: 4px;
+    width: 100%;
+    background: linear-gradient(90deg, var(--navy-deep), var(--blue-accent) 55%, #a9c1e8);
+  }
+  .top-bar {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 20px 24px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .top-bar img.mini-logo {
+    height: 28px;
+  }
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--grey-text);
+    text-decoration: none;
+    font-size: 13px;
+  }
+  .back-link:hover { color: var(--black); }
+  main {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 20px 24px 80px;
+  }
+  .hero {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 28px;
+  }
+  .hero img {
+    width: 110px;
+    height: 110px;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+  .hero h1 {
+    font-size: 24px;
+    margin: 0 0 4px;
+    letter-spacing: 1px;
+  }
+  .hero p {
+    margin: 0;
+    color: var(--grey-text);
+    font-size: 13px;
+  }
+  .warning {
+    background: #fff8e6;
+    border: 1px solid #f5deac;
+    color: #8a6100;
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-size: 13.5px;
+    margin-bottom: 24px;
+  }
+  section.block {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 20px;
+    margin-bottom: 16px;
+  }
+  section.block h2 {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--grey-text);
+    margin: 0 0 10px;
+  }
+  section.block ul {
+    margin: 0;
+    padding-left: 18px;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  section.block p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .note {
+    font-size: 12.5px;
+    color: var(--grey-text);
+    font-style: italic;
+    margin-top: 10px;
+  }
+  .disclaimer {
+    text-align: center;
+    font-size: 11px;
+    color: #a0a0a0;
+    max-width: 640px;
+    margin: 30px auto 0;
+    line-height: 1.5;
+  }
+  #loading, #notfound {
+    text-align: center;
+    color: var(--grey-text);
+    padding: 60px 20px;
+  }
+</style>
+</head>
+<body>
+
+<div class="top-accent"></div>
+
+<div class="top-bar">
+  <a class="back-link" href="catalogue.html">← Retour au catalogue</a>
+  <img class="mini-logo" src="images/logo.png" alt="KTA Labs">
+</div>
+
+<main>
+  <div id="loading">Chargement…</div>
+  <div id="notfound" style="display:none">Fiche introuvable.</div>
+  <div id="content" style="display:none"></div>
+</main>
+
+<div class="disclaimer">Informations fournies à titre indicatif pour un usage de recherche uniquement. Non destiné à la consommation humaine ou animale.</div>
+<div style="text-align:center;margin:10px 0 20px;font-size:12px">
+  <a href="mentions-legales.html" style="color:var(--grey-text);text-decoration:none;margin:0 8px">Mentions légales</a>·
+  <a href="cgv.html" style="color:var(--grey-text);text-decoration:none;margin:0 8px">CGV</a>·
+  <a href="confidentialite.html" style="color:var(--grey-text);text-decoration:none;margin:0 8px">Confidentialité</a>
+</div>
+
+<script>
+function section(title, bodyHtml) {
+  return `<section class="block"><h2>${title}</h2>${bodyHtml}</section>`;
+}
+function list(items) {
+  return `<ul>${items.map(i => `<li>${i}</li>`).join('')}</ul>`;
+}
+
+async function load() {
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get('id');
+  const imgOverride = params.get('img');
+  const res = await fetch('fiches.json');
+  const fiches = await res.json();
+  const f = fiches[id];
+  if (f && imgOverride) f.image = imgOverride;
+
+  document.getElementById('loading').style.display = 'none';
+
+  if (!f) {
+    document.getElementById('notfound').style.display = 'block';
+    return;
+  }
+
+  let html = `
+    <div class="hero">
+      <img src="${f.image}" alt="${f.nom}">
+      <div>
+        <h1>${f.nom}</h1>
+        <p>Fiche d'information — usage recherche</p>
+      </div>
+    </div>
+  `;
+
+  if (f.attention) {
+    html += `<div class="warning">⚠️ ${f.attention}</div>`;
+  }
+
+  if (f.reconstitution) {
+    html += section('Reconstitution', list(f.reconstitution));
+  }
+
+  if (f.dose) {
+    let doseHtml = list(f.dose);
+    if (f.dose_note) doseHtml += `<p class="note">${f.dose_note}</p>`;
+    html += section('Dose', doseHtml);
+  }
+
+  if (f.quand) {
+    html += section('Quand le prendre', list(f.quand));
+  }
+
+  if (f.premiers_effets) {
+    html += section('Au bout de combien de temps arrivent les premiers effets ?', `<p>${f.premiers_effets}</p>`);
+  }
+
+  if (f.combien_de_temps) {
+    html += section('Combien de temps en prendre ?', `<p>${f.combien_de_temps}</p>`);
+  }
+
+  if (f.effets) {
+    html += section('Effets', list(f.effets));
+  }
+
+  if (f.effets_secondaires) {
+    let sideHtml = list(f.effets_secondaires);
+    if (f.note_bas) sideHtml += `<p class="note">${f.note_bas}</p>`;
+    html += section('Effets secondaires possibles', sideHtml);
+  }
+
+  if (f.a_savoir) {
+    html += section('À savoir', `<p>${f.a_savoir}</p>`);
+  }
+
+  const contentEl = document.getElementById('content');
+  contentEl.innerHTML = html;
+  contentEl.style.display = 'block';
+}
+
+load();
+</script>
+
+</body>
+</html>
