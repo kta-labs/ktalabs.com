@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KTA Labs — Ta facture</title>
+<link rel="icon" href="images/logo.png">
+<style>
+  :root {
+    --black: #16204a;
+    --navy-deep: #0e1730;
+    --blue-accent: #4d6fb8;
+    --grey-text: #6b7280;
+    --border: #e8eaf1;
+    --bg: #f8f9fc;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--black);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .box {
+    max-width: 420px;
+    text-align: center;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 36px 28px;
+  }
+  .spinner {
+    width: 34px;
+    height: 34px;
+    border: 3px solid var(--border);
+    border-top-color: var(--blue-accent);
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  h1 { font-size: 17px; margin: 0 0 10px; }
+  p { font-size: 13.5px; color: var(--grey-text); line-height: 1.6; margin: 0; }
+  .retry-btn {
+    margin-top: 18px;
+    background: var(--black);
+    color: #fff;
+    border: none;
+    padding: 11px 22px;
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .retry-btn:hover { background: var(--navy-deep); }
+  .back-link {
+    display: inline-block;
+    margin-top: 14px;
+    color: var(--grey-text);
+    text-decoration: none;
+    font-size: 12.5px;
+  }
+  .back-link:hover { color: var(--black); }
+</style>
+</head>
+<body>
+
+<div class="box">
+  <div class="spinner" id="spinner"></div>
+  <h1 id="title">Génération de ta facture…</h1>
+  <p id="msg">Ça prend parfois quelques dizaines de secondes juste après la commande. Cette page se met à jour automatiquement, pas besoin de recharger.</p>
+  <div id="errorZone" style="display:none">
+    <button class="retry-btn" id="retryBtn">Réessayer</button>
+  </div>
+  <a class="back-link" href="suivi.html">← Retour au suivi de commande</a>
+</div>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const id = (params.get('id') || '').trim();
+const targetUrl = id ? `factures/${encodeURIComponent(id)}.html` : null;
+const MAX_ATTEMPTS = 20;
+let attempts = 0;
+
+function showError(title, msg, showRetry) {
+  document.getElementById('spinner').style.display = 'none';
+  document.getElementById('title').textContent = title;
+  document.getElementById('msg').textContent = msg;
+  document.getElementById('errorZone').style.display = showRetry ? 'block' : 'none';
+}
+
+async function checkAndRedirect() {
+  if (!targetUrl) {
+    showError('Lien invalide', "Le lien de facture est incomplet. Vérifie l'email de confirmation ou contacte-nous.", false);
+    return;
+  }
+  attempts++;
+  try {
+    const res = await fetch(targetUrl, { method: 'GET', cache: 'no-store' });
+    if (res.ok) {
+      window.location.replace(targetUrl);
+      return;
+    }
+  } catch (e) {}
+
+  if (attempts >= MAX_ATTEMPTS) {
+    showError(
+      "Ta facture n'est pas encore prête",
+      "Elle t'a aussi été envoyée par email (pense à vérifier tes spams). Tu peux réessayer dans une minute.",
+      true
+    );
+    return;
+  }
+  setTimeout(checkAndRedirect, 3000);
+}
+
+document.getElementById('retryBtn').addEventListener('click', () => {
+  attempts = 0;
+  document.getElementById('errorZone').style.display = 'none';
+  document.getElementById('spinner').style.display = '';
+  document.getElementById('title').textContent = 'Génération de ta facture…';
+  document.getElementById('msg').textContent = 'Ça prend parfois quelques dizaines de secondes juste après la commande. Cette page se met à jour automatiquement, pas besoin de recharger.';
+  checkAndRedirect();
+});
+
+checkAndRedirect();
+</script>
+
+</body>
+</html>
