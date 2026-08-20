@@ -16,7 +16,7 @@
     "nom": "Retatrutide 20MG",
     "categorie": "Peptides",
     "prix": 115,
-    "stock": 31,
+    "stock": 29,
     "description": "Peptide Triple Agoniste GLP-1/GIP/Glucagon",
     "ficheId": "retatrutide",
     "image": "images/reta-20mg.jpg",
@@ -99,7 +99,10 @@
       "Tampons désinfectants offerts"
     ],
     "composants": [
-      { "tallyLabel": "Retatrutide 10MG", "qte": 1 }
+      {
+        "tallyLabel": "Retatrutide 10MG",
+        "qte": 1
+      }
     ],
     "image": "images/kit-reta10.jpg",
     "tallyLabel": "Kit de reconstitution + injection Retatrutide 10MG",
@@ -121,7 +124,10 @@
       "Tampons désinfectants offerts"
     ],
     "composants": [
-      { "tallyLabel": "Retatrutide 20MG", "qte": 1 }
+      {
+        "tallyLabel": "Retatrutide 20MG",
+        "qte": 1
+      }
     ],
     "image": "images/kit-reta20.jpg",
     "tallyLabel": "Kit de reconstitution + injection Retatrutide 20MG",
@@ -143,7 +149,10 @@
       "Tampons désinfectants offerts"
     ],
     "composants": [
-      { "tallyLabel": "GHK-CU 50MG", "qte": 1 }
+      {
+        "tallyLabel": "GHK-CU 50MG",
+        "qte": 1
+      }
     ],
     "image": "images/kit-ghk.jpg",
     "tallyLabel": "Kit de reconstitution + injection GHK-CU 50MG",
@@ -165,7 +174,10 @@
       "Tampons désinfectants offerts"
     ],
     "composants": [
-      { "tallyLabel": "CJC 1295+Ipamorelin 10MG", "qte": 1 }
+      {
+        "tallyLabel": "CJC 1295+Ipamorelin 10MG",
+        "qte": 1
+      }
     ],
     "image": "images/kit-cjc.jpg",
     "tallyLabel": "Kit de reconstitution + injection CJC 1295+Ipamorelin 10MG",
@@ -187,7 +199,10 @@
       "Tampons désinfectants offerts"
     ],
     "composants": [
-      { "tallyLabel": "Selank 10MG", "qte": 1 }
+      {
+        "tallyLabel": "Selank 10MG",
+        "qte": 1
+      }
     ],
     "image": "images/kit-selank.jpg",
     "tallyLabel": "Kit de reconstitution + injection Selank 10MG",
@@ -209,7 +224,10 @@
       "Tampons désinfectants offerts"
     ],
     "composants": [
-      { "tallyLabel": "MT-1 10MG", "qte": 1 }
+      {
+        "tallyLabel": "MT-1 10MG",
+        "qte": 1
+      }
     ],
     "image": "images/kit-mt1.jpg",
     "tallyLabel": "Kit de reconstitution + injection MT-1 10MG",
@@ -231,7 +249,10 @@
       "Tampons désinfectants offerts"
     ],
     "composants": [
-      { "tallyLabel": "MT-2 10MG", "qte": 1 }
+      {
+        "tallyLabel": "MT-2 10MG",
+        "qte": 1
+      }
     ],
     "image": "images/kit-mt2.jpg",
     "tallyLabel": "Kit de reconstitution + injection MT-2 10MG",
