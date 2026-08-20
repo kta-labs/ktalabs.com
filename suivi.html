@@ -352,7 +352,8 @@ function paymentInfoHtml(mode, montant) {
   }
   if (mode === 'Virement bancaire') {
     const iban = 'FR7640618805120004080604597';
-    return `<strong>Virement bancaire</strong><br>Merci d'effectuer un virement de ${total} aux coordonnées suivantes :<br>IBAN : ${iban}<button type="button" class="copy-iban-btn" onclick="navigator.clipboard.writeText('${iban}');this.textContent='Copié ✓';setTimeout(()=>{this.textContent='Copier'},2000)">Copier</button><br>Titulaire : Dujarric`;
+    const titulaire = 'Dujarric';
+    return `<strong>Virement bancaire</strong><br>Merci d'effectuer un virement de ${total} aux coordonnées suivantes :<br>IBAN : ${iban}<button type="button" class="copy-iban-btn" onclick="navigator.clipboard.writeText('${iban}');this.textContent='Copié ✓';setTimeout(()=>{this.textContent='Copier'},2000)">Copier</button><br>Titulaire : ${titulaire}<button type="button" class="copy-iban-btn" onclick="navigator.clipboard.writeText('${titulaire}');this.textContent='Copié ✓';setTimeout(()=>{this.textContent='Copier'},2000)">Copier</button>`;
   }
   return `Montant à régler : ${total}`;
 }
