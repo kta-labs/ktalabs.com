@@ -1061,7 +1061,7 @@ function paymentInfoHtml(mode, montant) {
     return `<strong>PayPal</strong><br>Merci d'envoyer ${total} à <strong>@ktalabs</strong>, en choisissant l'option "Proches / Amis-famille" afin d'éviter les frais.<br><a class="pay-link" href="${paypalLink}" target="_blank" rel="noopener">→ Cliquer ici pour payer directement, montant déjà rempli</a>`;
   }
   if (mode === 'Revolut') {
-    return `<strong>Revolut</strong><br>Merci d'envoyer ${total} à <strong>@ktalabs</strong> depuis l'app Revolut : onglet "Payer", recherche <strong>@ktalabs</strong>, puis indique le montant toi-même.`;
+    return `<strong>Revolut</strong><br>Merci d'envoyer ${total} à <strong>@ktalabs</strong> depuis l'app Revolut : recherche <strong>@ktalabs</strong>, <strong>envoyer</strong> puis indique le montant toi-même.`;
   }
   if (mode === 'Virement bancaire') {
     const iban = 'FR7640618805120004080604597';
