@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Facture CMD-198 — KTA Labs</title>
+<style>
+  :root { --black:#16204a; --navy-deep:#0e1730; --blue-accent:#4d6fb8; --grey-text:#6b7280; --border:#e8eaf1; }
+  * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  html, body { margin:0; background:#e9ebf1; }
+  body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif; color:var(--black); }
+  .top-accent { height:6px; background:linear-gradient(90deg,var(--navy-deep),var(--blue-accent) 55%,#a9c1e8); }
+  .sheet { width:210mm; min-height:297mm; margin:0 auto; background:#fff; padding:18mm 18mm 20mm; }
+  .header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:36px; }
+  .header img { height:44px; }
+  .header h1 { font-size:28px; margin:0; letter-spacing:1px; text-align:right; }
+  .header .meta { text-align:right; color:var(--grey-text); font-size:13px; margin-top:6px; }
+  .cols { display:flex; justify-content:space-between; gap:24px; margin-bottom:32px; }
+  .col h2 { font-size:11px; text-transform:uppercase; letter-spacing:1px; color:var(--grey-text); margin:0 0 8px; }
+  .col p { margin:0; font-size:13.5px; line-height:1.6; }
+  table { width:100%; border-collapse:collapse; margin-bottom:6px; }
+  thead tr { background:var(--black); color:#fff; }
+  th, td { padding:10px 12px; font-size:13.5px; text-align:left; }
+  th.center, td.center { text-align:center; }
+  th.right, td.right { text-align:right; }
+  tbody tr { border-bottom:1px solid var(--border); }
+  .total-row td { border-top:2px solid var(--black); font-weight:700; padding-top:14px; }
+  .paiement { margin-top:34px; background:#f8f9fc; border:1px solid var(--border); border-radius:12px; padding:20px 22px; }
+  .paiement h2 { font-size:11px; text-transform:uppercase; letter-spacing:1px; color:var(--grey-text); margin:0 0 10px; }
+  .paiement p { margin:0 0 10px; font-size:13.5px; line-height:1.6; }
+  .track-btn { display:inline-block; margin-top:6px; background:var(--black); color:#fff; text-decoration:none; font-size:13px; font-weight:600; padding:10px 20px; border-radius:999px; }
+  .footer { margin-top:36px; font-size:11px; color:#a0a0a0; text-align:center; line-height:1.5; }
+  @media print {
+    @page { size: A4; margin: 0; }
+    html, body { background:#fff; }
+    .sheet { padding:15mm 18mm 20mm; }
+  }
+</style>
+</head>
+<body>
+<div class="top-accent"></div>
+<div class="sheet">
+  <div class="header">
+    <img src="https://kta-labs.github.io/ktalabs.com/images/logo.png" alt="KTA Labs">
+    <div><h1>FACTURE</h1><div class="meta">N° CMD-198<br>Date : 23/08/2026</div></div>
+  </div>
+  <div class="cols">
+    <div class="col">
+      <h2>Facturé à</h2>
+      <p>Nathan Dujarric<br>4 Le Moulin Du Dognon<br>87800 Meilhac<br>06505858<br>nathand112008@gmail.com</p>
+    </div>
+    <div class="col">
+      <h2>Livraison</h2>
+      <p>Colissimo à domicile 8€</p>
+    </div>
+  </div>
+  <table>
+    <thead><tr><th>Description</th><th class="center">Quantité</th><th class="center">Prix unitaire</th><th class="right">Sous-total</th></tr></thead>
+    <tbody>
+  <tr><td>Selank 10MG</td><td class="center">1</td><td class="center">50,00 €</td><td class="right">50,00 €</td></tr>
+
+  <tr><td>Livraison (Colissimo à domicile 8€)</td><td class="center">1</td><td class="center">-</td><td class="right">8,00 €</td></tr>
+</tbody>
+    <tfoot><tr class="total-row"><td colspan="3">TOTAL</td><td class="right">58,00 €</td></tr></tfoot>
+  </table>
+  <div class="paiement">
+    <h2>Coordonnées de paiement</h2>
+    <p>Mode de paiement choisi : <strong>Virement bancaire</strong></p>
+    <p>Merci d'effectuer un virement de <strong>58,00 €</strong> aux coordonnées suivantes :<br>IBAN : FR7640618805120004080604597<br>Titulaire : Dujarric</p>
+    <p>Une fois le paiement envoyé, tu peux nous le signaler directement depuis la page de suivi de ta commande. Tu recevras un email de confirmation dès que le paiement sera vérifié.</p>
+    <a class="track-btn" href="https://kta-labs.github.io/ktalabs.com/suivi.html?email=nathand112008%40gmail.com&order=CMD-198">Suivre ma commande</a>
+  </div>
+  <div class="footer">KTA Labs — Produits destinés exclusivement à un usage de recherche en laboratoire. Non destinés à la consommation humaine ou animale.</div>
+</div>
+</body>
+</html>
