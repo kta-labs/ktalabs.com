@@ -1,0 +1,1942 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KTA Labs — Catalogue</title>
+<link rel="icon" href="images/logo.png">
+<style>
+  :root {
+    --black: #16204a;
+    --navy-deep: #0e1730;
+    --blue-accent: #4d6fb8;
+    --grey-text: #6b7280;
+    --border: #e8eaf1;
+    --bg: #f8f9fc;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--black);
+    padding-bottom: 70px;
+    padding-top: 22px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .topbar {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: linear-gradient(90deg, var(--navy-deep), var(--black) 60%);
+    border-radius: 18px;
+    box-shadow: 0 14px 34px rgba(14,23,48,0.18);
+    position: sticky;
+    top: 10px;
+    z-index: 150;
+  }
+  .topbar-inner {
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .topbar-logo-chip {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border-radius: 12px;
+    padding: 6px 12px;
+    flex-shrink: 0;
+    line-height: 0;
+  }
+  .topbar-logo-chip img { height: 28px; display: block; }
+  .topbar-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
+    flex-wrap: wrap;
+    flex: 1;
+  }
+  .topbar-links > a {
+    color: #cfd8ee;
+    text-decoration: none;
+    font-size: 13.5px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .topbar-links > a:hover { color: #fff; }
+  .topbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+    margin-left: auto;
+  }
+  .cart-icon-btn {
+    position: relative;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 18px;
+  }
+  .cart-icon-btn .cart-badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    background: #e63946;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    min-width: 18px;
+    height: 18px;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4px;
+  }
+  .topbar-cta {
+    background: #fff;
+    color: var(--black);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .topbar-cta:hover { background: #e9edf7; }
+  .contact-dropdown { position: relative; }
+  .contact-toggle {
+    background: none;
+    border: none;
+    color: #cfd8ee;
+    font-size: 13.5px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    padding: 0;
+  }
+  .contact-toggle:hover { color: #fff; }
+  .contact-menu {
+    display: none;
+    position: absolute;
+    top: 26px;
+    left: 0;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+    padding: 8px;
+    min-width: 200px;
+    z-index: 200;
+  }
+  .contact-menu.open { display: block; }
+  .contact-menu a {
+    display: block;
+    padding: 9px 10px;
+    border-radius: 8px;
+    color: var(--black);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .contact-menu a:hover { background: var(--bg); }
+  .topbar-toggle {
+    display: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.18);
+    color: #fff;
+    font-size: 17px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+  }
+  @media (max-width: 760px) {
+    .topbar-inner {
+      flex-wrap: wrap;
+      align-items: flex-start;
+      align-content: flex-start;
+    }
+    .topbar-logo-chip,
+    .topbar-actions {
+      align-self: flex-start;
+    }
+    .topbar-actions { margin-left: auto; }
+    .topbar-cta { display: none; }
+    .topbar-toggle { display: flex; }
+    .topbar-links {
+      display: none;
+      width: 100%;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 2px;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255,255,255,0.14);
+    }
+    .topbar-links.open { display: flex; }
+    .topbar-links > a {
+      padding: 11px 4px;
+      font-size: 14.5px;
+    }
+    .contact-dropdown { width: 100%; }
+    .contact-toggle { width: 100%; text-align: left; padding: 11px 4px; }
+    .contact-menu {
+      position: static;
+      display: none;
+      box-shadow: none;
+      border: none;
+      background: rgba(255,255,255,0.06);
+      margin-top: 2px;
+      min-width: 0;
+      width: 100%;
+    }
+    .contact-menu.open { display: block; }
+    .contact-menu a { color: #fff; }
+    .contact-menu a:hover { background: rgba(255,255,255,0.12); }
+  }
+  .disclaimer {
+    text-align: center;
+    font-size: 11px;
+    color: #a0a0a0;
+    max-width: 640px;
+    margin: 10px auto 0;
+    line-height: 1.5;
+  }
+  .promo-box {
+    display: none;
+    max-width: 1200px;
+    margin: 18px auto 0;
+    background: #fff5f4;
+    border: 1px solid #f3c9c4;
+    border-radius: 16px;
+    padding: 16px 20px;
+    text-align: center;
+  }
+  .promo-box.visible { display: block; }
+  .promo-box-titre {
+    font-size: 15px;
+    font-weight: 700;
+    color: #c0392b;
+    margin: 0 0 4px;
+  }
+  .promo-box-texte {
+    font-size: 13px;
+    color: var(--black);
+    margin: 0 0 10px;
+    line-height: 1.5;
+  }
+  .promo-box-code {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #fff;
+    border: 1px dashed #c0392b;
+    border-radius: 999px;
+    padding: 6px 6px 6px 14px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #c0392b;
+    letter-spacing: 0.5px;
+  }
+  .promo-box-code button {
+    background: #c0392b;
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    padding: 5px 12px;
+    font-size: 11.5px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .promo-box-countdown {
+    margin-top: 8px;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: #9a6b00;
+  }
+
+  /* Popup promo (au chargement du catalogue) */
+  .promo-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10,15,30,0.55);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 300;
+    padding: 20px;
+  }
+  .promo-modal-overlay.visible { display: flex; }
+  .promo-modal {
+    background: #fff;
+    border-radius: 20px;
+    max-width: 420px;
+    width: 100%;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+    text-align: center;
+    position: relative;
+  }
+  .promo-modal-header {
+    background: linear-gradient(135deg, #c0392b, #e0574a);
+    color: #fff;
+    padding: 30px 26px 22px;
+  }
+  .promo-modal-header .emoji {
+    font-size: 34px;
+    display: block;
+    margin-bottom: 8px;
+  }
+  .promo-modal-header h3 {
+    margin: 0;
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+  .promo-modal-body { padding: 22px 26px 26px; }
+  .promo-modal-texte {
+    font-size: 13.5px;
+    color: var(--black);
+    line-height: 1.55;
+    margin: 0 0 18px;
+  }
+  .promo-modal-code {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #fff5f4;
+    border: 1px dashed #c0392b;
+    border-radius: 999px;
+    padding: 8px 8px 8px 16px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #c0392b;
+    letter-spacing: 0.5px;
+    margin-bottom: 16px;
+  }
+  .promo-modal-code button {
+    background: #c0392b;
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .promo-modal-countdown {
+    font-size: 12px;
+    font-weight: 600;
+    color: #9a6b00;
+    margin-bottom: 20px;
+  }
+  .promo-modal-cta {
+    width: 100%;
+    background: var(--black);
+    color: #fff;
+    border: none;
+    padding: 15px;
+    border-radius: 999px;
+    font-size: 14.5px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .promo-modal-cta:hover { background: var(--navy-deep); }
+  .promo-modal-close {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    background: rgba(255,255,255,0.25);
+    border: none;
+    color: #fff;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    font-size: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .promo-modal-close:hover { background: rgba(255,255,255,0.4); }
+
+  .trust-bar {
+    max-width: 720px;
+    margin: 14px auto 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 0 20px;
+  }
+  .trust-badge {
+    text-align: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--black);
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 9px 18px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background .15s, border-color .15s;
+  }
+  .trust-badge:hover {
+    background: var(--bg);
+    border-color: #ccc;
+  }
+  #socialProofBar { display: none; }
+  .trust-badge .stars-inline { color: #f0a500; }
+  .trust-badge .sep {
+    color: var(--border);
+    margin: 0 8px;
+    font-weight: 400;
+  }
+  .trust-badge.discord-badge {
+    border-color: #5865F2;
+    color: #5865F2;
+  }
+  @media (max-width: 600px) {
+    .trust-badge { font-size: 11.5px; padding: 8px 12px; }
+    .trust-badge .sep { margin: 0 5px; }
+  }
+  main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 24px 80px;
+  }
+  .category-block {
+    margin-bottom: 40px;
+  }
+  .category-block h2 {
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--grey-text);
+    margin: 0 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 20px;
+  }
+  .card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow .15s, transform .15s;
+  }
+  .card.clickable { cursor: pointer; }
+  .card:hover {
+    box-shadow: 0 8px 24px rgba(22,32,74,0.10);
+    transform: translateY(-2px);
+  }
+  .card-image {
+    height: 200px;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    position: relative;
+  }
+  .card-image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+  .card-image .placeholder {
+    font-size: 40px;
+  }
+  .badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #eafaf0;
+    color: #1a8a4a;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 999px;
+  }
+  .badge.low {
+    background: #fff4e0;
+    color: #b06a00;
+  }
+  .badge.out {
+    background: #fdecec;
+    color: #c0392b;
+  }
+  .card-body {
+    padding: 14px 16px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+  }
+  .card-body h3 {
+    font-size: 15px;
+    margin: 0;
+    font-weight: 600;
+  }
+  .card-reviews {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin: 1px 0 2px;
+  }
+  .card-stars {
+    color: #f0a500;
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+  .card-review-count {
+    font-size: 11px;
+    color: var(--grey-text);
+  }
+  .card-body p.desc {
+    font-size: 12.5px;
+    color: var(--grey-text);
+    margin: 0 0 8px;
+    line-height: 1.5;
+  }
+  .card-body ul.contenu {
+    font-size: 12.5px;
+    color: var(--grey-text);
+    margin: 0 0 8px;
+    padding-left: 18px;
+    line-height: 1.6;
+  }
+  .card-body ul.contenu li.duree {
+    color: var(--black);
+    font-weight: 600;
+    list-style: none;
+    margin-left: -18px;
+    margin-top: 4px;
+  }
+  .card-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: auto;
+  }
+  .price {
+    font-size: 17px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .price.promo { color: #c0392b; }
+  .price-old {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--grey-text);
+    text-decoration: line-through;
+    margin-right: 6px;
+  }
+  .promo-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #c0392b;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 999px;
+  }
+  .btn-group {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    width: 100%;
+  }
+  .info-btn {
+    height: 34px;
+    padding: 0 14px;
+    border-radius: 999px;
+    background: #fff;
+    color: var(--black);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    flex-shrink: 0;
+    font-size: 12.5px;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: background .15s, border-color .15s;
+    cursor: pointer;
+  }
+  .info-btn:hover {
+    background: #f2f2f2;
+    border-color: #ccc;
+  }
+  .add-btn {
+    height: 34px;
+    padding: 0 14px;
+    border-radius: 999px;
+    background: var(--black);
+    color: #fff;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    min-width: 0;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background .15s;
+  }
+  .add-btn:hover { background: var(--navy-deep); }
+  .add-btn.added { background: #1a8a4a; }
+  .qty-stepper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: #f2f2f2;
+    border-radius: 999px;
+    padding: 5px 10px;
+    flex: 1;
+  }
+  .qty-stepper button {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: none;
+    background: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 1;
+  }
+  .qty-stepper span {
+    font-size: 13px;
+    font-weight: 600;
+    min-width: 14px;
+    text-align: center;
+  }
+  footer {
+    text-align: center;
+    padding: 30px 20px 50px;
+    font-size: 12px;
+    color: var(--grey-text);
+  }
+  .contact-block {
+    margin-bottom: 22px;
+  }
+  .contact-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--black);
+    margin: 0 0 12px;
+  }
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .contact-links a {
+    border: 1px solid var(--border);
+    background: #fff;
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--black);
+    text-decoration: none;
+    transition: background .15s, border-color .15s;
+  }
+  .contact-links a:hover {
+    background: var(--black);
+    color: #fff;
+    border-color: var(--black);
+  }
+
+  /* Cart bar */
+  .cart-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--black);
+    color: #fff;
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 24px;
+    font-size: 14px;
+    z-index: 100;
+    cursor: pointer;
+  }
+  .cart-bar.visible { display: flex; }
+  .cart-bar .cart-total { font-weight: 700; }
+
+  /* Cart modal */
+  .overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    display: none;
+    align-items: flex-end;
+    justify-content: center;
+    z-index: 200;
+  }
+  .overlay.visible { display: flex; }
+  .cart-modal {
+    background: #fff;
+    width: 100%;
+    max-width: 480px;
+    max-height: 80vh;
+    border-radius: 20px 20px 0 0;
+    padding: 20px 12px;
+    overflow-y: auto;
+  }
+  @media (min-width: 600px) {
+    .overlay { align-items: center; }
+    .cart-modal { border-radius: 20px; }
+  }
+  .cart-modal h2 {
+    font-size: 18px;
+    margin: 0 0 16px;
+  }
+  .cart-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .cart-item img {
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 4px;
+    background: #fff;
+  }
+  .cart-item .info { flex: 1; }
+  .cart-item .info .name { font-size: 13.5px; font-weight: 600; }
+  .cart-item .info .unit-price { font-size: 12px; color: var(--grey-text); }
+  .cart-item .remove {
+    background: none;
+    border: none;
+    color: #c0392b;
+    font-size: 12px;
+    cursor: pointer;
+  }
+  .cart-empty {
+    text-align: center;
+    color: var(--grey-text);
+    padding: 30px 0;
+    font-size: 14px;
+  }
+  .cart-total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0 8px;
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .cart-note {
+    font-size: 11.5px;
+    color: var(--grey-text);
+    margin-bottom: 14px;
+    line-height: 1.5;
+  }
+  .swabs-note {
+    font-size: 11.5px;
+    color: #1a8a4a;
+    background: #eafaf0;
+    border-radius: 8px;
+    padding: 8px 10px;
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+  .promo-preview {
+    font-size: 11.5px;
+    border-radius: 8px;
+    padding: 8px 10px;
+    margin: -6px 0 14px;
+    line-height: 1.5;
+  }
+  .promo-preview.valid {
+    color: #1a8a4a;
+    background: #eafaf0;
+  }
+  .promo-preview.invalid {
+    color: #a33;
+    background: #fbeaea;
+  }
+  .checkout-total-row .price-old {
+    font-size: 14px;
+    margin-right: 8px;
+  }
+  .cart-checkout-btn {
+    width: 100%;
+    padding: 14px;
+    border-radius: 999px;
+    background: var(--black);
+    color: #fff;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .cart-close {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: var(--grey-text);
+  }
+  .cart-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* Checkout form */
+  .form-row {
+    margin-bottom: 14px;
+  }
+  .form-row label {
+    display: block;
+    font-size: 12.5px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--black);
+  }
+  .form-row input,
+  .form-row select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-size: 14px;
+    font-family: inherit;
+    color: var(--black);
+    background: #fff;
+  }
+  .form-row input:focus,
+  .form-row select:focus {
+    outline: none;
+    border-color: var(--blue-accent);
+  }
+  .form-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .checkout-total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0 16px;
+    font-size: 16px;
+    font-weight: 700;
+    border-top: 1px solid var(--border);
+    margin-top: 4px;
+  }
+  .checkout-total-row .sub {
+    font-size: 11.5px;
+    font-weight: 400;
+    color: var(--grey-text);
+    display: block;
+  }
+  .checkout-back-btn {
+    width: 100%;
+    background: none;
+    border: none;
+    color: var(--grey-text);
+    font-size: 13px;
+    padding: 12px 0 0;
+    cursor: pointer;
+  }
+  .checkout-back-btn:hover { color: var(--black); }
+  #submitOrderBtn:disabled {
+    opacity: .6;
+    cursor: default;
+  }
+  .success-box {
+    text-align: center;
+    padding: 20px 10px 10px;
+  }
+  .success-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: #eafaf0;
+    color: #1a8a4a;
+    font-size: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+  }
+  .success-box h3 {
+    margin: 0 0 8px;
+    font-size: 17px;
+  }
+  .success-box p {
+    margin: 0 0 20px;
+    font-size: 13.5px;
+    color: var(--grey-text);
+    line-height: 1.5;
+  }
+  .payment-box {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 8px;
+    text-align: left;
+    font-size: 13.5px;
+    line-height: 1.6;
+    margin: 0 0 16px;
+  }
+  .payment-box strong { color: var(--black); }
+  .pay-link {
+    display: inline-block;
+    margin-top: 8px;
+    color: var(--blue-accent);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 13px;
+  }
+  .pay-link:hover { text-decoration: underline; }
+  .iban-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 6px;
+    margin-top: 6px;
+    flex-wrap: nowrap;
+  }
+  .iban-row span {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--black);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+    flex-shrink: 1;
+  }
+  .copy-iban-btn {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 2px 8px;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--black);
+    cursor: pointer;
+  }
+  .copy-iban-btn:hover { background: #f2f2f2; }
+  .track-link {
+    display: inline-block;
+    font-size: 12.5px;
+    color: var(--blue-accent);
+    text-decoration: none;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+  #paidConfirmMsg {
+    font-size: 13px;
+    color: #1a8a4a;
+    font-weight: 600;
+    margin: 12px 0 0;
+  }
+
+  /* Mobile card layout — placé en dernier pour bien surcharger les règles desktop ci-dessus */
+  @media (max-width: 600px) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+    .card-image {
+      height: auto;
+      aspect-ratio: 1 / 1;
+      padding: 4px;
+    }
+    .card-image .placeholder { font-size: 26px; }
+    .card-body {
+      padding: 8px 10px 10px;
+      gap: 3px;
+    }
+    .card-body h3 {
+      font-size: 12.5px;
+      line-height: 1.3;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .card-reviews { margin: 0; }
+    .card-stars { font-size: 10px; }
+    .card-review-count { font-size: 9.5px; }
+    .card-body p.desc,
+    .card-body ul.contenu {
+      display: none;
+    }
+    .price { font-size: 14px; }
+    .price-old { font-size: 10.5px; }
+    .badge, .promo-badge {
+      font-size: 9px;
+      padding: 3px 6px;
+      top: 6px;
+    }
+    .badge { left: 6px; }
+    .promo-badge { right: 6px; }
+    .card-footer { gap: 6px; }
+    .info-btn { display: none; }
+    .add-btn {
+      width: 100%;
+      height: 32px;
+      font-size: 11.5px;
+    }
+    .qty-stepper {
+      width: 100%;
+      padding: 3px 8px;
+    }
+    .qty-stepper button {
+      width: 22px;
+      height: 22px;
+      font-size: 12px;
+    }
+    .qty-stepper span { font-size: 11.5px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="index.html" class="topbar-logo-chip"><img src="images/logo.png" alt="KTA Labs"></a>
+    <div class="topbar-links" id="topbarLinks">
+      <a href="index.html">Accueil</a>
+      <a href="ressources.html">Ressources</a>
+      <a href="avis.html">Avis</a>
+      <div class="contact-dropdown">
+        <button type="button" class="contact-toggle" id="catToggle">Catalogue ▾</button>
+        <div class="contact-menu" id="catMenu"></div>
+      </div>
+      <a href="suivi.html">Suivre ma commande</a>
+      <div class="contact-dropdown">
+        <button type="button" class="contact-toggle" id="contactToggle">Nous contacter ▾</button>
+        <div class="contact-menu" id="contactMenu">
+          <a href="https://discord.gg/dTJmAeesFq" target="_blank" rel="noopener">Discord</a>
+          <a href="https://t.me/ktalabsbylau" target="_blank" rel="noopener">Telegram</a>
+          <a href="mailto:ktalabs.contact@gmail.com">ktalabs.contact@gmail.com</a>
+        </div>
+      </div>
+    </div>
+    <div class="topbar-actions">
+      <button class="cart-icon-btn" id="cartIconBtn">
+        🛒
+        <span class="cart-badge" id="cartBadge" style="display:none">0</span>
+      </button>
+      <button class="topbar-cta" onclick="document.getElementById('cartIconBtn').click()">Commander</button>
+      <button type="button" class="topbar-toggle" id="topbarToggle" aria-label="Menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<div class="trust-bar">
+  <a class="trust-badge" id="socialProofBar" href="avis.html"></a>
+  <a class="trust-badge discord-badge" href="https://discord.gg/dTJmAeesFq" target="_blank" rel="noopener">👥 Rejoins nos 400+ membres sur Discord</a>
+</div>
+
+<div class="promo-box" id="promoBox"></div>
+
+<main id="catalogue"></main>
+
+<footer>
+  <div class="contact-block" id="contact">
+    <p class="contact-title">Une question ? Rejoins-nous</p>
+    <div class="contact-links">
+      <a href="https://discord.gg/dTJmAeesFq" target="_blank" rel="noopener">Discord</a>
+      <a href="https://t.me/ktalabsbylau" target="_blank" rel="noopener">Telegram</a>
+      <a href="mailto:ktalabs.contact@gmail.com">ktalabs.contact@gmail.com</a>
+    </div>
+  </div>
+  <div class="disclaimer">Tous les produits proposés sont destinés exclusivement à un usage de recherche en laboratoire. Non destinés à la consommation humaine ou animale.</div>
+  <div style="margin:10px 0">
+    <a href="mentions-legales.html" style="color:var(--grey-text);text-decoration:none;margin:0 8px">Mentions légales</a>·
+    <a href="cgv.html" style="color:var(--grey-text);text-decoration:none;margin:0 8px">CGV</a>·
+    <a href="confidentialite.html" style="color:var(--grey-text);text-decoration:none;margin:0 8px">Confidentialité</a>
+  </div>
+  KTA Labs — mis à jour automatiquement
+</footer>
+
+<div class="cart-bar" id="cartBar">
+  <span id="cartBarLabel">0 article</span>
+  <span class="cart-total" id="cartBarTotal">0,00 €</span>
+</div>
+
+<div class="overlay" id="cartOverlay">
+  <div class="cart-modal">
+    <div class="cart-modal-header">
+      <h2 id="cartModalTitle">Ton panier</h2>
+      <button class="cart-close" id="cartClose">✕</button>
+    </div>
+
+    <div id="cartViewPanel">
+      <div id="cartItems"></div>
+      <div class="cart-total-row">
+        <span>Total</span>
+        <span id="cartModalTotal">0,00 €</span>
+      </div>
+      <div class="swabs-note" id="swabsNote" style="display:none">🎁 Tampons désinfectants offerts avec les packs, les kits et les seringues.</div>
+      <div class="cart-note">Les frais de livraison seront ajoutés à l'étape suivante selon le mode choisi.</div>
+      <button class="cart-checkout-btn" id="checkoutBtn">Commander</button>
+    </div>
+
+    <div id="checkoutViewPanel" style="display:none">
+      <form id="checkoutForm">
+        <div style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden" aria-hidden="true">
+          <label for="f_website">Ne pas remplir</label>
+          <input type="text" id="f_website" name="website" tabindex="-1" autocomplete="off">
+        </div>
+        <div class="form-row">
+          <label>Civilité *</label>
+          <select id="f_civilite" required>
+            <option value="">Choisir…</option>
+            <option value="Homme">Homme</option>
+            <option value="Femme">Femme</option>
+          </select>
+        </div>
+        <div class="form-grid-2">
+          <div class="form-row"><label>Prénom *</label><input id="f_prenom" required></div>
+          <div class="form-row"><label>Nom *</label><input id="f_nom" required></div>
+        </div>
+        <div class="form-row"><label>Email *</label><input type="email" id="f_email" required></div>
+        <div class="form-row"><label>Téléphone *</label><input type="tel" id="f_telephone" required></div>
+        <div class="form-grid-2">
+          <div class="form-row"><label>Ville *</label><input id="f_ville" required></div>
+          <div class="form-row"><label>Code postal *</label><input id="f_codePostal" required></div>
+        </div>
+        <div class="form-row"><label>Adresse *</label><input id="f_adresse" required></div>
+        <div class="form-row">
+          <label>Mode de livraison *</label>
+          <select id="f_modeLivraison" required>
+            <option value="">Choisir…</option>
+            <option value="Colissimo à domicile 8€">Colissimo à domicile — 8€</option>
+            <option value="Mondial Relay en point relais 5€">Mondial Relay en point relais — 5€</option>
+            <option value="Mondial Relay en locker 5€">Mondial Relay en locker — 5€</option>
+          </select>
+        </div>
+        <div class="form-row" id="f_relaisRow" style="display:none">
+          <label>Adresse du point relais / locker *</label>
+          <input id="f_adresseRelais">
+        </div>
+        <div class="form-row">
+          <label>Mode de paiement *</label>
+          <select id="f_modePaiement" required>
+            <option value="">Choisir…</option>
+            <option value="PayPal">PayPal</option>
+            <option value="Revolut">Revolut</option>
+            <option value="Virement bancaire">Virement bancaire</option>
+          </select>
+        </div>
+        <div class="form-row"><label>Code promo / ambassadeur (optionnel)</label><input id="f_codeAmbassadeur"></div>
+        <div class="promo-preview" id="promoPreview" style="display:none"></div>
+
+        <div class="checkout-total-row">
+          <span>Total à payer<span class="sub" id="checkoutTotalSub"></span></span>
+          <span id="checkoutTotal">0,00 €</span>
+        </div>
+        <button type="submit" class="cart-checkout-btn" id="submitOrderBtn">Valider la commande</button>
+        <button type="button" class="checkout-back-btn" id="checkoutBackBtn">← Retour au panier</button>
+      </form>
+    </div>
+
+    <div id="successViewPanel" style="display:none">
+      <div class="success-box">
+        <div class="success-icon">✓</div>
+        <h3>Commande envoyée !</h3>
+        <p>Commande <strong id="successOrderNumber">—</strong> enregistrée. Voici comment régler :</p>
+        <div class="payment-box" id="successPaymentBox"></div>
+        <a class="track-link" id="successTrackLink" href="suivi.html" target="_blank">Suivre ma commande →</a>
+        <button class="cart-checkout-btn" id="paidBtn">J'ai effectué le paiement</button>
+        <div id="paidConfirmMsg" style="display:none">Merci, on vérifie ça — tu recevras un email dès que le paiement sera confirmé.</div>
+        <p class="cart-note" style="text-align:center;margin-top:16px">📩 Une facture arrive aussi par email — pense à vérifier tes spams si tu ne la vois pas.</p>
+        <button class="checkout-back-btn" id="successCloseBtn">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="promo-modal-overlay" id="promoModalOverlay">
+  <div class="promo-modal">
+    <button type="button" class="promo-modal-close" id="promoModalClose">✕</button>
+    <div class="promo-modal-header">
+      <span class="emoji">🔥</span>
+      <h3 id="promoModalTitre"></h3>
+    </div>
+    <div class="promo-modal-body">
+      <div class="promo-modal-texte" id="promoModalTexte" style="display:none"></div>
+      <div class="promo-modal-code" id="promoModalCodeWrap" style="display:none"></div>
+      <div class="promo-modal-countdown" id="promoModalCountdown" style="display:none"></div>
+      <button type="button" class="promo-modal-cta" id="promoModalCta">Voir les produits en promo</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const CHECKOUT_WEBHOOK_URL = "https://nathand.app.n8n.cloud/webhook/commande-site";
+const PAYMENT_CONFIRM_WEBHOOK_URL = "https://nathand.app.n8n.cloud/webhook/paiement-effectue";
+const VERIFY_PROMO_URL = "https://nathand.app.n8n.cloud/webhook/verifier-code-promo";
+// Mis à jour automatiquement depuis stats.json (généré par le workflow n8n "Compteur commandes livrées").
+let ORDERS_DELIVERED = null;
+// Mis à jour automatiquement depuis promo.json (généré par le workflow n8n "Bandeau promo" branché sur Notion).
+let PROMO = null;
+let PRODUCTS = [];
+let lastOrderEmail = '';
+let lastOrderNumber = '';
+let appliedPromo = null;
+let promoCheckTimeout = null;
+let checkoutFormShownAt = null;
+
+async function checkPromoCode(code) {
+  if (!code) {
+    appliedPromo = null;
+    updateCheckoutTotal();
+    return;
+  }
+  try {
+    const res = await fetch(VERIFY_PROMO_URL + '?code=' + encodeURIComponent(code));
+    appliedPromo = await res.json().catch(() => ({ valid: false }));
+  } catch (err) {
+    appliedPromo = null;
+  }
+  updateCheckoutTotal();
+}
+
+function paymentInfoHtml(mode, montant) {
+  const total = fmtPrice(montant);
+  const amountRaw = (Math.round((Number(montant) + Number.EPSILON) * 100) / 100).toFixed(2);
+  if (mode === 'PayPal') {
+    const paypalLink = `https://paypal.me/ktalabs/${amountRaw}EUR`;
+    return `<strong>PayPal</strong><br>Merci d'envoyer ${total} à <strong>@ktalabs</strong>, en choisissant l'option "Proches / Amis-famille" afin d'éviter les frais.<br><a class="pay-link" href="${paypalLink}" target="_blank" rel="noopener">→ Cliquer ici pour payer directement, montant déjà rempli</a>`;
+  }
+  if (mode === 'Revolut') {
+    return `<strong>Revolut</strong><br>Merci d'envoyer ${total} à <strong>@ktalabs</strong> depuis l'app Revolut : onglet "Payer", recherche <strong>@ktalabs</strong>, puis indique le montant toi-même.`;
+  }
+  if (mode === 'Virement bancaire') {
+    const iban = 'FR7640618805120004080604597';
+    const titulaire = 'Dujarric';
+    return `<strong>Virement bancaire</strong><br>Merci d'effectuer un virement de ${total} aux coordonnées suivantes :<div class="iban-row"><span>IBAN : ${iban}</span><button type="button" class="copy-iban-btn" onclick="navigator.clipboard.writeText('${iban}');this.textContent='Copié ✓';setTimeout(()=>{this.textContent='Copier'},2000)">Copier</button></div><div class="iban-row"><span>Titulaire : ${titulaire}</span><button type="button" class="copy-iban-btn" onclick="navigator.clipboard.writeText('${titulaire}');this.textContent='Copié ✓';setTimeout(()=>{this.textContent='Copier'},2000)">Copier</button></div>`;
+  }
+  return `Montant à régler : ${total}`;
+}
+let CART = JSON.parse(localStorage.getItem('kta_cart') || '{}');
+
+function saveCart() {
+  localStorage.setItem('kta_cart', JSON.stringify(CART));
+  renderCartUI();
+}
+
+function addToCart(sku, delta) {
+  const product = PRODUCTS.find(p => p.sku === sku);
+  const stock = getEffectiveStock(product);
+
+  if (delta > 0 && typeof stock === 'number' && (CART[sku] || 0) + delta > stock) {
+    alert(`Il ne reste que ${stock} en stock.`);
+    return;
+  }
+
+  // Bac Water constraint: only one volume at a time
+  if (product.tallyVolumeField && delta > 0) {
+    const otherBacWaterSku = PRODUCTS.find(p => p.tallyVolumeField === product.tallyVolumeField && p.sku !== sku)?.sku;
+    if (otherBacWaterSku && CART[otherBacWaterSku]) {
+      alert("Tu ne peux choisir qu'un seul volume de Bac Water par commande. L'ancien volume a été retiré du panier.");
+      delete CART[otherBacWaterSku];
+    }
+  }
+
+  const current = CART[sku] || 0;
+  const next = Math.max(0, current + delta);
+  if (next === 0) {
+    delete CART[sku];
+  } else {
+    CART[sku] = next;
+  }
+  saveCart();
+}
+
+function cartCount() {
+  return Object.values(CART).reduce((a, b) => a + b, 0);
+}
+
+function effectivePrix(p) {
+  return (typeof p.prixPromo === 'number' && p.prixPromo < p.prix) ? p.prixPromo : p.prix;
+}
+
+function cartTotal() {
+  return Object.entries(CART).reduce((sum, [sku, qty]) => {
+    const p = PRODUCTS.find(pr => pr.sku === sku);
+    return sum + (p ? effectivePrix(p) * qty : 0);
+  }, 0);
+}
+
+function fmtPrice(n) {
+  return n.toFixed(2).replace('.', ',') + ' €';
+}
+
+function cartHasFreeSwabs() {
+  return Object.keys(CART).some(sku => {
+    const p = PRODUCTS.find(pr => pr.sku === sku);
+    if (!p) return false;
+    return p.categorie === 'Packs' || p.categorie === 'Kits' || p.sku === 'seringues';
+  });
+}
+
+function renderCartUI() {
+  const count = cartCount();
+  const total = cartTotal();
+
+  const bar = document.getElementById('cartBar');
+  bar.classList.toggle('visible', count > 0);
+  document.getElementById('cartBarLabel').textContent = `${count} article${count > 1 ? 's' : ''}`;
+  document.getElementById('cartBarTotal').textContent = fmtPrice(total);
+  document.getElementById('cartModalTotal').textContent = fmtPrice(total);
+
+  const badge = document.getElementById('cartBadge');
+  badge.textContent = count;
+  badge.style.display = count > 0 ? 'flex' : 'none';
+
+  document.getElementById('swabsNote').style.display = cartHasFreeSwabs() ? '' : 'none';
+
+  const itemsEl = document.getElementById('cartItems');
+  const entries = Object.entries(CART);
+  if (entries.length === 0) {
+    itemsEl.innerHTML = `<div class="cart-empty">Ton panier est vide.</div>`;
+  } else {
+    itemsEl.innerHTML = entries.map(([sku, qty]) => {
+      const p = PRODUCTS.find(pr => pr.sku === sku);
+      if (!p) return '';
+      return `
+        <div class="cart-item">
+          ${p.image ? `<img src="${p.image}" alt="${p.nom}">` : ''}
+          <div class="info">
+            <div class="name">${p.nom} × ${qty}</div>
+            <div class="unit-price">${fmtPrice(effectivePrix(p))} / unité</div>
+          </div>
+          <button class="remove" onclick="removeFromCart('${sku}')">Retirer</button>
+        </div>
+      `;
+    }).join('');
+  }
+
+  // refresh steppers on cards
+  PRODUCTS.forEach(p => {
+    const el = document.getElementById('cardctrl-' + p.sku);
+    if (el) el.innerHTML = cardControlHtml(p);
+  });
+}
+
+function removeFromCart(sku) {
+  delete CART[sku];
+  saveCart();
+}
+
+function deliveryPriceFromLabel(label) {
+  if (!label) return 0;
+  const m = label.match(/(\d+(?:[.,]\d+)?)\s*€/);
+  return m ? Number(m[1].replace(',', '.')) : 0;
+}
+
+function buildOrderPayload() {
+  const produits = [];
+  let volumeBacWater = '';
+  let nombreBacWater = 0;
+  let nombreSeringues = 0;
+
+  Object.entries(CART).forEach(([sku, qty]) => {
+    const p = PRODUCTS.find(pr => pr.sku === sku);
+    if (!p) return;
+    if (p.tallyLabel) {
+      produits.push({ nom: p.tallyLabel, quantite: qty });
+    } else if (p.tallyVolumeField) {
+      volumeBacWater = p.tallyVolume;
+      nombreBacWater = qty;
+    } else if (p.sku === 'seringues') {
+      nombreSeringues = qty;
+    }
+  });
+
+  return {
+    nom: document.getElementById('f_nom').value.trim(),
+    prenom: document.getElementById('f_prenom').value.trim(),
+    civilite: document.getElementById('f_civilite').value,
+    email: document.getElementById('f_email').value.trim(),
+    telephone: document.getElementById('f_telephone').value.trim(),
+    ville: document.getElementById('f_ville').value.trim(),
+    codePostal: document.getElementById('f_codePostal').value.trim(),
+    adresse: document.getElementById('f_adresse').value.trim(),
+    adressePointRelais: document.getElementById('f_adresseRelais').value.trim(),
+    modeLivraison: document.getElementById('f_modeLivraison').value,
+    modePaiement: document.getElementById('f_modePaiement').value,
+    codeAmbassadeur: document.getElementById('f_codeAmbassadeur').value.trim(),
+    produits,
+    volumeBacWater,
+    nombreBacWater,
+    nombreSeringues,
+    honeypot: document.getElementById('f_website').value,
+    elapsedMs: checkoutFormShownAt ? (Date.now() - checkoutFormShownAt) : 0
+  };
+}
+
+function showCartView() {
+  document.getElementById('cartModalTitle').textContent = 'Ton panier';
+  document.getElementById('cartViewPanel').style.display = '';
+  document.getElementById('checkoutViewPanel').style.display = 'none';
+  document.getElementById('successViewPanel').style.display = 'none';
+}
+
+function showCheckoutView() {
+  if (cartCount() === 0) return;
+  document.getElementById('cartModalTitle').textContent = 'Tes coordonnées';
+  document.getElementById('cartViewPanel').style.display = 'none';
+  document.getElementById('checkoutViewPanel').style.display = '';
+  document.getElementById('successViewPanel').style.display = 'none';
+  checkoutFormShownAt = Date.now();
+  updateCheckoutTotal();
+}
+
+function showSuccessView() {
+  document.getElementById('cartModalTitle').textContent = '';
+  document.getElementById('cartViewPanel').style.display = 'none';
+  document.getElementById('checkoutViewPanel').style.display = 'none';
+  document.getElementById('successViewPanel').style.display = '';
+}
+
+function updateCheckoutTotal() {
+  const mode = document.getElementById('f_modeLivraison').value;
+  let livraison = deliveryPriceFromLabel(mode);
+  let produitsTotal = cartTotal();
+  const originalTotal = produitsTotal + livraison;
+  const promoValid = appliedPromo && appliedPromo.valid;
+  const notes = [];
+
+  if (promoValid) {
+    const reduction = Number(appliedPromo.reduction) || 0;
+    if (reduction > 0) {
+      produitsTotal = produitsTotal * (1 - reduction / 100);
+      notes.push(`${reduction}% de réduction`);
+    }
+    if (appliedPromo.livraisonOfferte) {
+      livraison = 0;
+      notes.push('livraison offerte');
+    }
+    if (appliedPromo.peptidesOfferts && appliedPromo.peptidesOfferts.length > 0) {
+      notes.push(appliedPromo.peptidesOfferts.length > 1 ? 'peptides offerts' : 'peptide offert');
+    }
+    if (appliedPromo.bacWaterOfferte) {
+      notes.push('Bac Water offerte');
+    }
+  }
+
+  const finalTotal = produitsTotal + livraison;
+
+  const totalEl = document.getElementById('checkoutTotal');
+  if (promoValid && finalTotal < originalTotal - 0.001) {
+    totalEl.innerHTML = `<span class="price-old">${fmtPrice(originalTotal)}</span>${fmtPrice(finalTotal)}`;
+  } else {
+    totalEl.textContent = fmtPrice(finalTotal);
+  }
+
+  document.getElementById('checkoutTotalSub').textContent = livraison > 0
+    ? ` (dont ${fmtPrice(livraison)} de livraison)`
+    : '';
+
+  const previewEl = document.getElementById('promoPreview');
+  if (promoValid) {
+    previewEl.style.display = '';
+    previewEl.className = 'promo-preview valid';
+    previewEl.textContent = notes.length > 0 ? `✓ Code appliqué : ${notes.join(', ')}` : '✓ Code appliqué';
+  } else if (appliedPromo && appliedPromo.valid === false) {
+    previewEl.style.display = '';
+    previewEl.className = 'promo-preview invalid';
+    previewEl.textContent = 'Code invalide ou expiré';
+  } else {
+    previewEl.style.display = 'none';
+  }
+}
+
+function cardControlHtml(p) {
+  const stock = getEffectiveStock(p);
+  const inStock = stock !== null ? stock > 0 : (p.disponibilite !== 'Rupture de stock');
+  if (!inStock) {
+    return `<button class="add-btn" disabled style="opacity:.5;cursor:default">Rupture de stock</button>`;
+  }
+  const qty = CART[p.sku] || 0;
+  if (qty === 0) {
+    return `<button class="add-btn" onclick="addToCart('${p.sku}', 1)">Ajouter au panier</button>`;
+  }
+  return `
+    <div class="qty-stepper">
+      <button onclick="addToCart('${p.sku}', -1)">−</button>
+      <span>${qty}</span>
+      <button onclick="addToCart('${p.sku}', 1)">+</button>
+    </div>
+  `;
+}
+
+let AVIS = [];
+
+function normalizeText(s) {
+  return (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/\s+/g, ' ').trim();
+}
+
+function matchesProductAvis(avisProduit, p) {
+  if (!avisProduit) return false;
+  const a = normalizeText(avisProduit);
+  const candidates = [p.nom, p.tallyLabel].filter(Boolean).map(normalizeText);
+  return candidates.some(c => a.includes(c) || c.includes(a));
+}
+
+function starsHtml(note) {
+  const rounded = Math.round(note);
+  return '★'.repeat(rounded) + '☆'.repeat(5 - rounded);
+}
+
+function reviewsRowHtml(p) {
+  const matched = AVIS.filter(a => matchesProductAvis(a.produit, p));
+  if (matched.length === 0) return '';
+  const avg = matched.reduce((s, a) => s + (a.note || 0), 0) / matched.length;
+  return `<div class="card-reviews"><span class="card-stars">${starsHtml(avg)}</span><span class="card-review-count">(${matched.length})</span></div>`;
+}
+
+function renderSocialProof() {
+  const bar = document.getElementById('socialProofBar');
+  if (!bar || !AVIS || AVIS.length === 0) return;
+  const avg = AVIS.reduce((s, a) => s + (Number(a.note) || 0), 0) / AVIS.length;
+  const avgStr = Number.isInteger(avg) ? String(avg) : avg.toFixed(1).replace('.', ',');
+  const parts = [`<span class="stars-inline">★</span> ${avgStr}/5 <span class="sep">·</span> ${AVIS.length} avis`];
+  bar.innerHTML = parts.join('<span class="sep">·</span>');
+  bar.style.display = 'block';
+}
+
+let promoCountdownInterval = null;
+
+function formatCountdown(msLeft) {
+  if (msLeft <= 0) return null;
+  const totalSeconds = Math.floor(msLeft / 1000);
+  const days = Math.floor(totalSeconds / 86400);
+  const hours = Math.floor((totalSeconds % 86400) / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
+  const parts = [];
+  if (days > 0) parts.push(`${days}j`);
+  if (days > 0 || hours > 0) parts.push(`${hours}h`);
+  if (days > 0 || hours > 0 || minutes > 0) parts.push(`${minutes}min`);
+  parts.push(`${seconds}s`);
+  return parts.join(' ');
+}
+
+function renderPromo() {
+  const box = document.getElementById('promoBox');
+  if (promoCountdownInterval) {
+    clearInterval(promoCountdownInterval);
+    promoCountdownInterval = null;
+  }
+  if (!box) return;
+  if (!PROMO || !PROMO.actif) {
+    box.classList.remove('visible');
+    return;
+  }
+  const titre = PROMO.titre || 'Promo en cours';
+  const codeHtml = PROMO.code
+    ? `<div class="promo-box-code"><span>${PROMO.code}</span><button type="button" onclick="navigator.clipboard.writeText('${PROMO.code}');this.textContent='Copié ✓';setTimeout(()=>{this.textContent='Copier'},2000)">Copier</button></div>`
+    : '';
+  const countdownHtml = PROMO.expiration ? `<div class="promo-box-countdown" id="promoCountdown"></div>` : '';
+  box.innerHTML = `<div class="promo-box-titre">🔥 ${titre}</div>${PROMO.texte ? `<div class="promo-box-texte">${PROMO.texte}</div>` : ''}${codeHtml}${countdownHtml}`;
+  box.classList.add('visible');
+
+  if (PROMO.expiration) {
+    const expDate = new Date(PROMO.expiration + 'T23:59:59');
+    const updateCountdown = () => {
+      const el = document.getElementById('promoCountdown');
+      if (!el) return;
+      const label = formatCountdown(expDate - new Date());
+      el.textContent = label ? `⏳ Expire dans ${label}` : 'Offre expirée';
+    };
+    updateCountdown();
+    promoCountdownInterval = setInterval(updateCountdown, 1000);
+  }
+}
+
+let promoModalCountdownInterval = null;
+
+function renderPromoModal() {
+  const overlay = document.getElementById('promoModalOverlay');
+  if (!overlay || !PROMO || !PROMO.actif) return;
+
+  const seenKey = 'kta_promo_modal_seen';
+  const promoId = `${PROMO.code || ''}|${PROMO.titre || ''}|${PROMO.misAJour || ''}`;
+  if (sessionStorage.getItem(seenKey) === promoId) return;
+
+  document.getElementById('promoModalTitre').textContent = PROMO.titre || 'Promo en cours';
+
+  const texteEl = document.getElementById('promoModalTexte');
+  if (PROMO.texte) {
+    texteEl.textContent = PROMO.texte;
+    texteEl.style.display = '';
+  } else {
+    texteEl.style.display = 'none';
+  }
+
+  const codeWrap = document.getElementById('promoModalCodeWrap');
+  if (PROMO.code) {
+    codeWrap.innerHTML = `<span>${PROMO.code}</span><button type="button" onclick="navigator.clipboard.writeText('${PROMO.code}');this.textContent='Copié ✓';setTimeout(()=>{this.textContent='Copier'},2000)">Copier</button>`;
+    codeWrap.style.display = '';
+  } else {
+    codeWrap.style.display = 'none';
+  }
+
+  if (promoModalCountdownInterval) {
+    clearInterval(promoModalCountdownInterval);
+    promoModalCountdownInterval = null;
+  }
+  const countdownEl = document.getElementById('promoModalCountdown');
+  if (PROMO.expiration) {
+    const expDate = new Date(PROMO.expiration + 'T23:59:59');
+    countdownEl.style.display = '';
+    const update = () => {
+      const label = formatCountdown(expDate - new Date());
+      countdownEl.textContent = label ? `⏳ Expire dans ${label}` : 'Offre expirée';
+    };
+    update();
+    promoModalCountdownInterval = setInterval(update, 1000);
+  } else {
+    countdownEl.style.display = 'none';
+  }
+
+  overlay.classList.add('visible');
+  sessionStorage.setItem(seenKey, promoId);
+}
+
+async function loadCatalogue() {
+  const [productsRes, avisRes, statsRes, promoRes] = await Promise.all([
+    fetch('products.json'),
+    fetch('avis.json').catch(() => null),
+    fetch('stats.json').catch(() => null),
+    fetch('promo.json').catch(() => null)
+  ]);
+  PRODUCTS = await productsRes.json();
+  AVIS = avisRes ? await avisRes.json().catch(() => []) : [];
+  if (statsRes && statsRes.ok) {
+    const stats = await statsRes.json().catch(() => null);
+    if (stats && typeof stats.commandesLivrees === 'number') {
+      ORDERS_DELIVERED = stats.commandesLivrees;
+    }
+  }
+  if (promoRes && promoRes.ok) {
+    PROMO = await promoRes.json().catch(() => null);
+  }
+  renderPromo();
+  renderPromoModal();
+  renderSocialProof();
+
+  const categories = [...new Set(PRODUCTS.map(p => p.categorie))];
+  const catMenu = document.getElementById('catMenu');
+  const main = document.getElementById('catalogue');
+
+  const allLink = document.createElement('a');
+  allLink.href = '#';
+  allLink.textContent = 'Tout afficher';
+  allLink.dataset.cat = '';
+  catMenu.appendChild(allLink);
+
+  categories.forEach(cat => {
+    const link = document.createElement('a');
+    link.href = '#';
+    link.textContent = cat;
+    link.dataset.cat = cat;
+    catMenu.appendChild(link);
+  });
+
+  categories.forEach(cat => {
+    const block = document.createElement('div');
+    block.className = 'category-block';
+    block.dataset.category = cat;
+
+    const title = document.createElement('h2');
+    title.textContent = cat;
+    block.appendChild(title);
+
+    const grid = document.createElement('div');
+    grid.className = 'grid';
+
+    PRODUCTS.filter(p => p.categorie === cat).forEach(p => {
+      grid.appendChild(renderCard(p));
+    });
+
+    block.appendChild(grid);
+    main.appendChild(block);
+  });
+
+  renderCartUI();
+}
+
+function getEffectiveStock(p) {
+  if (p.categorie === 'Kits' && p.composants && p.composants.length) {
+    const peptide = PRODUCTS.find(pr => pr.categorie === 'Peptides' && pr.tallyLabel === p.composants[0].tallyLabel);
+    if (peptide) return peptide.stock;
+  }
+  return p.stock;
+}
+
+function renderCard(p) {
+  const card = document.createElement('div');
+  card.className = 'card';
+
+  const stock = getEffectiveStock(p);
+  const inStock = stock !== null ? stock > 0 : (p.disponibilite !== "Rupture de stock");
+  const stockLabel = stock !== null ? `${stock} en stock` : (p.disponibilite || "En stock");
+
+  let badgeClass = '';
+  if (!inStock) {
+    badgeClass = 'out';
+  } else if (stock !== null) {
+    if (stock < 5) badgeClass = 'out';
+    else if (stock < 10) badgeClass = 'low';
+  }
+
+  const bodyContent = p.contenu
+    ? `<ul class="contenu">${p.contenu.map(item => {
+        const isDuree = item.startsWith('Durée');
+        return `<li${isDuree ? ' class="duree"' : ''}>${item}</li>`;
+      }).join('')}</ul>`
+    : `<p class="desc">${p.description}</p>`;
+
+  const hasPromo = typeof p.prixPromo === 'number' && p.prixPromo < p.prix;
+  const hasBarre = !hasPromo && typeof p.prixBarre === 'number' && p.prixBarre > p.prix;
+  let priceHtml;
+  if (hasPromo) {
+    priceHtml = `<span class="price-old">${p.prix.toFixed(2).replace('.', ',')} €</span><span class="price promo">${p.prixPromo.toFixed(2).replace('.', ',')} €</span>`;
+  } else if (hasBarre) {
+    priceHtml = `<span class="price-old">${p.prixBarre.toFixed(2).replace('.', ',')} €</span><span class="price">${p.prix.toFixed(2).replace('.', ',')} €</span>`;
+  } else {
+    priceHtml = `<span class="price">${p.prix.toFixed(2).replace('.', ',')} €</span>`;
+  }
+
+  card.innerHTML = `
+    <div class="card-image">
+      <span class="badge ${badgeClass}">${inStock ? stockLabel : 'Rupture'}</span>
+      ${hasPromo ? `<span class="promo-badge">PROMOTION</span>` : ''}
+      ${p.image ? `<img src="${p.image}" alt="${p.nom}" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'placeholder',textContent:'💉'}))">` : `<span class="placeholder">💉</span>`}
+    </div>
+    <div class="card-body">
+      <h3>${p.nom}</h3>
+      ${reviewsRowHtml(p)}
+      ${bodyContent}
+      <div class="card-footer">
+        <span>${priceHtml}</span>
+        <div class="btn-group">
+          ${p.ficheId ? `<a class="info-btn" href="produit.html?id=${p.ficheId}&img=${encodeURIComponent(p.image)}">Infos</a>` : ''}
+          <span id="cardctrl-${p.sku}">${cardControlHtml(p)}</span>
+        </div>
+      </div>
+    </div>
+  `;
+
+  card.classList.add('clickable');
+  card.addEventListener('click', (e) => {
+    if (e.target.closest('.card-footer')) return;
+    window.location.href = `acheter.html?sku=${encodeURIComponent(p.sku)}`;
+  }, true);
+
+  return card;
+}
+
+function filterCategory(cat) {
+  document.querySelectorAll('.category-block').forEach(block => {
+    block.style.display = (!cat || block.dataset.category === cat) ? '' : 'none';
+  });
+}
+
+document.getElementById('cartBar').addEventListener('click', () => {
+  showCartView();
+  document.getElementById('cartOverlay').classList.add('visible');
+});
+document.getElementById('cartIconBtn').addEventListener('click', () => {
+  showCartView();
+  document.getElementById('cartOverlay').classList.add('visible');
+});
+document.getElementById('cartClose').addEventListener('click', () => {
+  document.getElementById('cartOverlay').classList.remove('visible');
+});
+document.getElementById('cartOverlay').addEventListener('click', (e) => {
+  if (e.target.id === 'cartOverlay') e.currentTarget.classList.remove('visible');
+});
+document.getElementById('checkoutBtn').addEventListener('click', showCheckoutView);
+document.getElementById('checkoutBackBtn').addEventListener('click', showCartView);
+document.getElementById('successCloseBtn').addEventListener('click', () => {
+  document.getElementById('cartOverlay').classList.remove('visible');
+  showCartView();
+});
+document.getElementById('f_modeLivraison').addEventListener('change', (e) => {
+  const relaisRow = document.getElementById('f_relaisRow');
+  const needsRelais = e.target.value.includes('point relais') || e.target.value.includes('locker');
+  relaisRow.style.display = needsRelais ? '' : 'none';
+  document.getElementById('f_adresseRelais').required = needsRelais;
+  updateCheckoutTotal();
+});
+document.getElementById('f_codeAmbassadeur').addEventListener('input', (e) => {
+  const code = e.target.value.trim();
+  clearTimeout(promoCheckTimeout);
+  if (!code) {
+    appliedPromo = null;
+    updateCheckoutTotal();
+    return;
+  }
+  promoCheckTimeout = setTimeout(() => checkPromoCode(code), 500);
+});
+document.getElementById('checkoutForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const btn = document.getElementById('submitOrderBtn');
+  btn.disabled = true;
+  btn.textContent = 'Envoi en cours…';
+  try {
+    const payload = buildOrderPayload();
+    const modePaiement = payload.modePaiement;
+    const email = payload.email;
+    const mode = document.getElementById('f_modeLivraison').value;
+    const montant = cartTotal() + deliveryPriceFromLabel(mode);
+
+    const res = await fetch(CHECKOUT_WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    if (!res.ok) throw new Error('Erreur serveur');
+    const result = await res.json().catch(() => ({}));
+    if (result.success === false) {
+      throw new Error(result.message || "Ta commande n'a pas pu être validée.");
+    }
+    const orderNumber = result.orderNumber || '';
+
+    CART = {};
+    saveCart();
+    document.getElementById('checkoutForm').reset();
+    document.getElementById('f_relaisRow').style.display = 'none';
+    appliedPromo = null;
+    document.getElementById('promoPreview').style.display = 'none';
+
+    lastOrderEmail = email;
+    lastOrderNumber = orderNumber;
+    const finalTotal = (typeof result.prixTotal === 'number') ? result.prixTotal : montant;
+    const finalMode = result.modePaiement || modePaiement;
+    document.getElementById('successOrderNumber').textContent = orderNumber || 'en cours de création';
+    document.getElementById('successPaymentBox').innerHTML = paymentInfoHtml(finalMode, finalTotal);
+    document.getElementById('successTrackLink').href = `suivi.html?email=${encodeURIComponent(email)}&order=${encodeURIComponent(orderNumber)}`;
+    const paidBtn = document.getElementById('paidBtn');
+    paidBtn.style.display = '';
+    paidBtn.disabled = false;
+    paidBtn.textContent = "J'ai effectué le paiement";
+    document.getElementById('paidConfirmMsg').style.display = 'none';
+
+    showSuccessView();
+  } catch (err) {
+    alert(err && err.message ? err.message : "Une erreur est survenue lors de l'envoi de la commande. Réessaie, ou contacte-nous directement si le problème persiste.");
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Valider la commande';
+  }
+});
+
+document.getElementById('paidBtn').addEventListener('click', async () => {
+  const paidBtn = document.getElementById('paidBtn');
+  paidBtn.disabled = true;
+  paidBtn.textContent = 'Envoi…';
+  try {
+    await fetch(PAYMENT_CONFIRM_WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: lastOrderEmail, orderNumber: lastOrderNumber })
+    });
+  } catch (err) {}
+  if (lastOrderNumber) localStorage.setItem('kta_paid_' + lastOrderNumber, '1');
+  paidBtn.style.display = 'none';
+  document.getElementById('paidConfirmMsg').style.display = 'block';
+});
+
+document.getElementById('contactToggle').addEventListener('click', (e) => {
+  e.stopPropagation();
+  document.getElementById('contactMenu').classList.toggle('open');
+});
+document.getElementById('catToggle').addEventListener('click', (e) => {
+  e.stopPropagation();
+  document.getElementById('catMenu').classList.toggle('open');
+});
+document.getElementById('catMenu').addEventListener('click', (e) => {
+  const link = e.target.closest('a[data-cat]');
+  if (!link) return;
+  e.preventDefault();
+  filterCategory(link.dataset.cat || null);
+  document.getElementById('catMenu').classList.remove('open');
+});
+document.addEventListener('click', (e) => {
+  document.getElementById('contactMenu').classList.remove('open');
+  document.getElementById('catMenu').classList.remove('open');
+  const topbarLinks = document.getElementById('topbarLinks');
+  if (topbarLinks.classList.contains('open') && !e.target.closest('.card, .add-btn, .qty-stepper')) {
+    topbarLinks.classList.remove('open');
+  }
+});
+document.getElementById('topbarToggle').addEventListener('click', (e) => {
+  e.stopPropagation();
+  document.getElementById('topbarLinks').classList.toggle('open');
+});
+document.getElementById('promoModalClose').addEventListener('click', () => {
+  document.getElementById('promoModalOverlay').classList.remove('visible');
+});
+document.getElementById('promoModalCta').addEventListener('click', () => {
+  document.getElementById('promoModalOverlay').classList.remove('visible');
+  const box = document.getElementById('promoBox');
+  if (box) box.scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+document.getElementById('promoModalOverlay').addEventListener('click', (e) => {
+  if (e.target.id === 'promoModalOverlay') e.currentTarget.classList.remove('visible');
+});
+
+loadCatalogue();
+</script>
+
+</body>
+</html>
