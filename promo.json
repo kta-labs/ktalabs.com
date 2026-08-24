@@ -1,7 +1,7 @@
 {
-  "actif": false,
-  "titre": "",
+  "actif": true,
+  "titre": "Code promo SITE",
   "texte": "",
-  "code": "",
-  "misAJour": "2026-08-24T17:15:21.261Z"
+  "code": "SITE",
+  "misAJour": "2026-08-24T17:41:17.073Z"
 }
