@@ -1,8 +1,8 @@
 {
-  "actif": false,
-  "titre": "",
-  "texte": "",
-  "code": "",
-  "expiration": null,
-  "misAJour": "2026-08-24T00:00:00.000Z"
+  "actif": true,
+  "titre": "Code promo SITE",
+  "texte": "livraison offerte",
+  "code": "SITE",
+  "expiration": "2026-08-27",
+  "misAJour": "2026-08-24T18:10:14.055Z"
 }
