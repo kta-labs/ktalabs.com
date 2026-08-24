@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KTA Labs — Avis clients</title>
+<link rel="icon" href="images/logo.png">
+<style>
+  :root {
+    --black: #16204a;
+    --navy-deep: #0e1730;
+    --blue-accent: #4d6fb8;
+    --grey-text: #6b7280;
+    --border: #e8eaf1;
+    --bg: #f8f9fc;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--black);
+  }
+  .top-accent {
+    height: 4px;
+    width: 100%;
+    background: linear-gradient(90deg, var(--navy-deep), var(--blue-accent) 55%, #a9c1e8);
+  }
+  .top-bar {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 20px 24px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .top-bar img.mini-logo { height: 28px; }
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--grey-text);
+    text-decoration: none;
+    font-size: 13px;
+  }
+  .back-link:hover { color: var(--black); }
+  main {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 20px 24px 60px;
+  }
+  h1 { font-size: 26px; margin: 10px 0 6px; }
+  main > p.intro {
+    color: var(--grey-text);
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0 0 28px;
+  }
+  .add-avis-btn {
+    display: block;
+    width: 100%;
+    background: var(--black);
+    color: #fff;
+    border: none;
+    padding: 13px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 24px;
+  }
+  .add-avis-btn:hover { background: var(--navy-deep); }
+  h2.section-title {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--grey-text);
+    margin: 36px 0 14px;
+  }
+  .avis-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px 18px;
+    margin-bottom: 12px;
+  }
+  .avis-stars {
+    color: #f0a500;
+    font-size: 16px;
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+  }
+  .avis-comment {
+    font-size: 13.5px;
+    line-height: 1.6;
+    margin: 0 0 8px;
+  }
+  .avis-meta {
+    font-size: 12px;
+    color: var(--grey-text);
+    font-weight: 600;
+  }
+  .avis-photo {
+    max-width: 100%;
+    border-radius: 10px;
+    margin: 10px 0;
+    display: block;
+  }
+  .empty {
+    color: var(--grey-text);
+    font-size: 13.5px;
+  }
+  form.avis-form {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+  }
+  .form-row { margin-bottom: 14px; }
+  .form-row label {
+    display: block;
+    font-size: 12.5px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--black);
+  }
+  .form-row input,
+  .form-row textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-size: 14px;
+    font-family: inherit;
+    color: var(--black);
+    background: #fff;
+  }
+  .form-row textarea { min-height: 90px; resize: vertical; }
+  .form-row input:focus,
+  .form-row textarea:focus {
+    outline: none;
+    border-color: var(--blue-accent);
+  }
+  .star-picker {
+    font-size: 30px;
+    letter-spacing: 6px;
+  }
+  .star-pick {
+    cursor: pointer;
+    color: var(--border);
+    transition: color .1s;
+  }
+  .star-pick.active { color: #f0a500; }
+  .checkbox-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    font-size: 13px;
+  }
+  .checkbox-row input { width: auto; }
+  .avis-submit-btn {
+    width: 100%;
+    padding: 14px;
+    border-radius: 999px;
+    background: var(--black);
+    color: #fff;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 6px;
+  }
+  .avis-submit-btn:disabled { opacity: .6; cursor: default; }
+  .avis-form-msg {
+    font-size: 13px;
+    margin-top: 12px;
+    text-align: center;
+  }
+  .avis-form-msg.success { color: #1a8a4a; }
+  .avis-form-msg.error { color: #c0392b; }
+  .disclaimer {
+    text-align: center;
+    font-size: 11px;
+    color: #a0a0a0;
+    max-width: 640px;
+    margin: 30px auto 0;
+    line-height: 1.5;
+  }
+  footer {
+    text-align: center;
+    padding: 10px 20px 50px;
+    font-size: 12px;
+    color: var(--grey-text);
+  }
+  .contact-block { margin-bottom: 22px; }
+  .contact-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--black);
+    margin: 0 0 12px;
+  }
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .contact-links a {
+    border: 1px solid var(--border);
+    background: #fff;
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--black);
+    text-decoration: none;
+    transition: background .15s, border-color .15s;
+  }
+  .contact-links a:hover {
+    background: var(--black);
+    color: #fff;
+    border-color: var(--black);
+  }
+</style>
+</head>
+<body>
+
+<div class="top-accent"></div>
+
+<div class="top-bar">
+  <a class="back-link" href="catalogue.html">← Retour au catalogue</a>
+  <img class="mini-logo" src="images/logo.png" alt="KTA Labs">
+</div>
+
+<main>
+  <h1>Avis clients</h1>
+  <p class="intro">Découvre les retours de nos clients, et partage le tien si tu as déjà commandé.</p>
+
+  <button type="button" class="add-avis-btn" id="addAvisBtn">Laisser un avis</button>
+
+  <div id="avisList"><p class="empty">Chargement…</p></div>
+
+  <div id="avisFormSection" style="display:none">
+    <h2 class="section-title">Laisser un avis</h2>
+    <form class="avis-form" id="avisForm">
+      <div style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden" aria-hidden="true">
+        <label for="f_avisWebsite">Ne pas remplir</label>
+        <input type="text" id="f_avisWebsite" name="website" tabindex="-1" autocomplete="off">
+      </div>
+      <div class="form-row">
+        <label>N° de commande *</label>
+        <input id="f_avisCommande" value="CMD-" required>
+      </div>
+      <div class="form-row">
+        <label>Email utilisé pour la commande *</label>
+        <input id="f_avisEmail" type="email" required>
+      </div>
+      <div class="form-row">
+        <label>Note *</label>
+        <div class="star-picker" id="starPicker">
+          <span class="star-pick" data-value="1">★</span><span class="star-pick" data-value="2">★</span><span class="star-pick" data-value="3">★</span><span class="star-pick" data-value="4">★</span><span class="star-pick" data-value="5">★</span>
+        </div>
+      </div>
+      <div class="form-row">
+        <label>Ton avis *</label>
+        <textarea id="f_avisCommentaire" required></textarea>
+      </div>
+      <div class="checkbox-row">
+        <input type="checkbox" id="f_afficherPrenom" checked>
+        <label for="f_afficherPrenom" style="margin:0">Afficher mon prénom avec l'avis</label>
+      </div>
+      <div class="form-row">
+        <label>Photo (optionnel)</label>
+        <input id="f_avisPhoto" type="file" accept="image/*">
+      </div>
+      <button type="submit" class="avis-submit-btn" id="avisSubmitBtn">Envoyer mon avis</button>
+      <div class="avis-form-msg" id="avisFormMsg"></div>
+    </form>
+  </div>
+
+  <div class="disclaimer">Les avis sont vérifiés par rapport à une commande réelle et publiés après validation. Contenu fourni à titre indicatif pour un usage de recherche uniquement.</div>
+</main>
+
+<footer>
+  <div class="contact-block">
+    <p class="contact-title">Une question ? Rejoins-nous</p>
+    <div class="contact-links">
+      <a href="https://discord.gg/dTJmAeesFq" target="_blank" rel="noopener">Discord</a>
+      <a href="https://t.me/ktalabsbylau" target="_blank" rel="noopener">Telegram</a>
+      <a href="mailto:ktalabs.contact@gmail.com">ktalabs.contact@gmail.com</a>
+    </div>
+  </div>
+  <div style="margin:10px 0">
+    <a href="mentions-legales.html" style="color:var(--grey-text);text-decoration:none;margin:0 8px">Mentions légales</a>·
+    <a href="cgv.html" style="color:var(--grey-text);text-decoration:none;margin:0 8px">CGV</a>·
+    <a href="confidentialite.html" style="color:var(--grey-text);text-decoration:none;margin:0 8px">Confidentialité</a>
+  </div>
+  KTA Labs
+</footer>
+
+<script>
+const SUBMIT_AVIS_URL = "https://nathand.app.n8n.cloud/webhook/soumettre-avis";
+let selectedNote = 0;
+let avisFormShownAt = null;
+
+function stars(note) {
+  return '★'.repeat(note) + '☆'.repeat(5 - note);
+}
+
+function resizeImageToBase64(file, maxDim, quality) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    const reader = new FileReader();
+    reader.onerror = () => reject(new Error('Lecture du fichier impossible.'));
+    reader.onload = () => {
+      img.onerror = () => reject(new Error('Image invalide.'));
+      img.onload = () => {
+        let { width, height } = img;
+        if (width > maxDim || height > maxDim) {
+          if (width > height) {
+            height = Math.round(height * (maxDim / width));
+            width = maxDim;
+          } else {
+            width = Math.round(width * (maxDim / height));
+            height = maxDim;
+          }
+        }
+        const canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, width, height);
+        resolve(canvas.toDataURL('image/jpeg', quality));
+      };
+      img.src = reader.result;
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+async function loadAvis() {
+  const el = document.getElementById('avisList');
+  try {
+    const res = await fetch('avis.json');
+    const avis = await res.json();
+    if (!avis || avis.length === 0) {
+      el.innerHTML = '<p class="empty">Aucun avis pour le moment.</p>';
+      return;
+    }
+    el.innerHTML = avis.map(a => {
+      const dateStr = a.date ? new Date(a.date).toLocaleDateString('fr-FR') : '';
+      return `
+      <div class="avis-card">
+        <div class="avis-stars">${stars(a.note)}</div>
+        ${a.photo ? `<img class="avis-photo" src="${a.photo}" alt="Photo avis" loading="lazy">` : ''}
+        <p class="avis-comment">${a.commentaire}</p>
+        <div class="avis-meta">${a.nom}${a.produit ? ' · ' + a.produit : ''}${dateStr ? ' · ' + dateStr : ''}</div>
+      </div>
+    `;
+    }).join('');
+  } catch (e) {
+    el.innerHTML = '<p class="empty">Aucun avis pour le moment.</p>';
+  }
+}
+
+document.getElementById('addAvisBtn').addEventListener('click', () => {
+  const section = document.getElementById('avisFormSection');
+  const btn = document.getElementById('addAvisBtn');
+  const isHidden = section.style.display === 'none';
+  section.style.display = isHidden ? '' : 'none';
+  btn.textContent = isHidden ? 'Annuler' : 'Laisser un avis';
+  if (isHidden) {
+    avisFormShownAt = Date.now();
+    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+});
+
+document.querySelectorAll('.star-pick').forEach(star => {
+  star.addEventListener('click', () => {
+    selectedNote = Number(star.dataset.value);
+    document.querySelectorAll('.star-pick').forEach(s => {
+      s.classList.toggle('active', Number(s.dataset.value) <= selectedNote);
+    });
+  });
+});
+
+document.getElementById('avisForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const btn = document.getElementById('avisSubmitBtn');
+  const msgEl = document.getElementById('avisFormMsg');
+  if (selectedNote === 0) {
+    msgEl.textContent = "Merci de sélectionner une note.";
+    msgEl.className = 'avis-form-msg error';
+    return;
+  }
+  btn.disabled = true;
+  btn.textContent = 'Envoi…';
+  msgEl.textContent = '';
+  try {
+    const payload = {
+      numeroCommande: document.getElementById('f_avisCommande').value.trim(),
+      email: document.getElementById('f_avisEmail').value.trim(),
+      note: selectedNote,
+      commentaire: document.getElementById('f_avisCommentaire').value.trim(),
+      afficherPrenom: document.getElementById('f_afficherPrenom').checked,
+      afficherProduit: true,
+      honeypot: document.getElementById('f_avisWebsite').value,
+      elapsedMs: avisFormShownAt ? (Date.now() - avisFormShownAt) : 0
+    };
+    const photoFile = document.getElementById('f_avisPhoto').files[0];
+    if (photoFile) {
+      if (!photoFile.type.startsWith('image/')) {
+        throw new Error("Le fichier sélectionné n'est pas une image.");
+      }
+      if (photoFile.size > 8 * 1024 * 1024) {
+        throw new Error("La photo est trop lourde (8 Mo max).");
+      }
+      btn.textContent = 'Préparation de la photo…';
+      payload.photoBase64 = await resizeImageToBase64(photoFile, 1280, 0.8);
+      btn.textContent = 'Envoi…';
+    }
+    const res = await fetch(SUBMIT_AVIS_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    const result = await res.json().catch(() => ({}));
+    msgEl.textContent = result.message || (result.success ? 'Merci pour ton avis !' : "Une erreur est survenue.");
+    msgEl.className = 'avis-form-msg ' + (result.success ? 'success' : 'error');
+    if (result.success) {
+      document.getElementById('avisForm').reset();
+      selectedNote = 0;
+      document.querySelectorAll('.star-pick').forEach(s => s.classList.remove('active'));
+    }
+  } catch (err) {
+    msgEl.textContent = err && err.message ? err.message : "Une erreur est survenue lors de l'envoi.";
+    msgEl.className = 'avis-form-msg error';
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Envoyer mon avis';
+  }
+});
+
+function prefillFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  const commande = params.get('commande');
+  const email = params.get('email');
+  if (!commande && !email) return;
+
+  if (commande) document.getElementById('f_avisCommande').value = commande;
+  if (email) document.getElementById('f_avisEmail').value = email;
+
+  const section = document.getElementById('avisFormSection');
+  const btn = document.getElementById('addAvisBtn');
+  section.style.display = '';
+  btn.textContent = 'Annuler';
+  avisFormShownAt = Date.now();
+  setTimeout(() => section.scrollIntoView({ behavior: 'smooth', block: 'start' }), 300);
+}
+
+loadAvis();
+prefillFromUrl();
+</script>
+
+</body>
+</html>
