@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KTA Labs — Peptides de recherche</title>
+<link rel="icon" href="images/logo.png">
+<meta name="description" content="Peptides de recherche de qualité pharmaceutique. Pureté supérieure à 99 %, lots certifiés Janoshik, expédition sous 24 à 48h.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://kta-labs.github.io/ktalabs.com/">
+<meta property="og:title" content="KTA Labs — Peptides de recherche">
+<meta property="og:description" content="Peptides de recherche de qualité pharmaceutique. Pureté supérieure à 99 %, lots certifiés Janoshik, expédition sous 24 à 48h.">
+<meta property="og:image" content="https://kta-labs.github.io/ktalabs.com/images/logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="KTA Labs — Peptides de recherche">
+<meta name="twitter:description" content="Peptides de recherche de qualité pharmaceutique. Pureté supérieure à 99 %, lots certifiés Janoshik, expédition sous 24 à 48h.">
+<meta name="twitter:image" content="https://kta-labs.github.io/ktalabs.com/images/logo.png">
+<style>
+  :root {
+    --black: #16204a;
+    --navy-deep: #0e1730;
+    --blue-accent: #4d6fb8;
+    --blue-light: #8fb2e8;
+    --grey-text: #6b7280;
+    --border: #e8eaf1;
+    --bg: #f8f9fc;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    background: var(--bg);
+  }
+  .top-accent {
+    height: 4px;
+    width: 100%;
+    background: linear-gradient(90deg, var(--navy-deep), var(--blue-accent) 55%, #a9c1e8);
+  }
+  .promo-banner {
+    display: none;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 10px 20px;
+    background: linear-gradient(90deg, #c0392b, #e0574a);
+    color: #fff;
+    line-height: 1.4;
+  }
+  .promo-banner.visible { display: block; }
+  @media (max-width: 480px) {
+    .promo-banner { font-size: 11.5px; padding: 9px 14px; }
+  }
+
+  .hero {
+    position: relative;
+    background: radial-gradient(circle at 50% 0%, #1c2a5c 0%, var(--navy-deep) 55%, #0a1226 100%);
+    color: #fff;
+    padding: 60px 24px 60px;
+    text-align: center;
+  }
+  .logo-chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    border-radius: 16px;
+    padding: 10px 18px;
+    margin-bottom: 28px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+  }
+  .logo-chip img { height: 40px; display: block; }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid rgba(255,255,255,0.18);
+    background: rgba(255,255,255,0.06);
+    color: #cfd8ee;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 7px 16px;
+    border-radius: 999px;
+    margin-bottom: 26px;
+  }
+  .hero-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--blue-light); }
+
+  .hero h1 {
+    font-size: 40px;
+    line-height: 1.25;
+    margin: 0 0 18px;
+    font-weight: 700;
+    max-width: 680px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero h1 .accent {
+    background: linear-gradient(90deg, var(--blue-light), #cfe0f7);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .hero p.sub {
+    max-width: 560px;
+    margin: 0 auto 34px;
+    color: #aab4d4;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  .hero-cta {
+    display: inline-block;
+    background: #fff;
+    color: var(--black);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 15px;
+    padding: 15px 34px;
+    border-radius: 999px;
+    transition: transform .15s, box-shadow .15s;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  }
+  .hero-cta:hover { transform: translateY(-2px); }
+
+  .trust-row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-top: 46px;
+  }
+  .trust-row span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11.5px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: #9aa5c4;
+  }
+  .trust-row .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--blue-light); }
+
+  main.below {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 50px 24px 10px;
+    text-align: center;
+  }
+  main.below h2 {
+    font-size: 20px;
+    margin: 0 0 12px;
+    color: var(--black);
+  }
+  main.below p {
+    color: var(--grey-text);
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0 0 24px;
+  }
+  .disclaimer {
+    text-align: center;
+    font-size: 11px;
+    color: #a0a0a0;
+    max-width: 640px;
+    margin: 0 auto 30px;
+    line-height: 1.5;
+    padding: 0 24px;
+  }
+  footer {
+    text-align: center;
+    padding: 10px 20px 50px;
+    font-size: 12px;
+    color: var(--grey-text);
+  }
+  .contact-block { margin-bottom: 22px; }
+  .contact-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--black);
+    margin: 0 0 12px;
+  }
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .contact-links a {
+    border: 1px solid var(--border);
+    background: #fff;
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--black);
+    text-decoration: none;
+    transition: background .15s, border-color .15s;
+  }
+  .contact-links a:hover {
+    background: var(--black);
+    color: #fff;
+    border-color: var(--black);
+  }
+
+  @media (max-width: 480px) {
+    .hero h1 { font-size: 30px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="top-accent"></div>
+<div class="promo-banner" id="promoBanner"></div>
+
+<section class="hero">
+  <div class="logo-chip"><img src="images/logo.png" alt="KTA Labs"></div>
+  <div class="hero-badge"><span class="dot"></span>Pureté &gt; 99&nbsp;% · Lot certifié Janoshik</div>
+  <h1>Peptides de recherche.<br><span class="accent">Qualité pharmaceutique.</span></h1>
+  <p class="sub">Une référence pour tes recherches : pureté supérieure à 99&nbsp;%, lots certifiés Janoshik, et expédition sous 24 à 48h.</p>
+  <a class="hero-cta" href="catalogue.html">Voir les peptides</a>
+
+  <div class="trust-row">
+    <span><span class="dot"></span>Paiement sécurisé</span>
+    <span><span class="dot"></span>Expédition sous 24-48h</span>
+    <span><span class="dot"></span>Pureté &gt; 99&nbsp;%</span>
+    <span><span class="dot"></span>Lot certifié Janoshik</span>
+  </div>
+</section>
+
+<main class="below">
+  <h2>KTA Labs</h2>
+  <p>Catalogue de peptides et packs de recherche, commande en ligne et suivi de commande, tout au même endroit.</p>
+  <div class="disclaimer">Tous les produits proposés sont destinés exclusivement à un usage de recherche en laboratoire. Non destinés à la consommation humaine ou animale.</div>
+</main>
+
+<footer>
+  <div class="contact-block">
+    <p class="contact-title">Une question ? Rejoins-nous</p>
+    <div class="contact-links">
+      <a href="https://discord.gg/dTJmAeesFq" target="_blank" rel="noopener">Discord</a>
+      <a href="https://t.me/ktalabsbylau" target="_blank" rel="noopener">Telegram</a>
+      <a href="mailto:ktalabs.contact@gmail.com">ktalabs.contact@gmail.com</a>
+      <a href="ressources.html">Ressources</a>
+    </div>
+  </div>
+  <div style="margin:10px 0">
+    <a href="mentions-legales.html" style="color:var(--grey-text);text-decoration:none;margin:0 8px">Mentions légales</a>·
+    <a href="cgv.html" style="color:var(--grey-text);text-decoration:none;margin:0 8px">CGV</a>·
+    <a href="confidentialite.html" style="color:var(--grey-text);text-decoration:none;margin:0 8px">Confidentialité</a>
+  </div>
+  KTA Labs
+</footer>
+
+<script>
+fetch('promo.json').then(r => r.ok ? r.json() : null).then(promo => {
+  if (!promo || !promo.actif) return;
+  const banner = document.getElementById('promoBanner');
+  if (!banner) return;
+  banner.innerHTML = `🔥 ${promo.titre || 'Promo en cours'}${promo.texte ? ' — ' + promo.texte : ''}`;
+  banner.classList.add('visible');
+}).catch(() => {});
+</script>
+
+</body>
+</html>
