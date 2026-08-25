@@ -1,10 +1,10 @@
 {
   "actif": true,
-  "titre": "Code promo SITE",
-  "texte": "Bénéficier de la livraison offerte avec le code promo SITE",
-  "code": "SITE",
-  "produit": null,
-  "expiration": "2026-08-27",
+  "titre": "Promotion sur le Retatrutide 10MG",
+  "texte": "Maintenant à 59.99 €",
+  "code": "",
+  "produit": "Retatrutide 10MG",
+  "expiration": "2026-08-31",
   "restant": null,
-  "misAJour": "2026-08-25T14:50:24.737Z"
+  "misAJour": "2026-08-25T14:55:24.609Z"
 }
