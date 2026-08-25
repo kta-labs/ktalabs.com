@@ -1,9 +1,9 @@
 {
-  "actif": true,
-  "titre": "Code promo SITE",
-  "texte": "Bénéficier de la livraison offerte avec le code promo SITE",
-  "code": "SITE",
-  "expiration": "2026-08-27",
+  "actif": false,
+  "titre": "",
+  "texte": "",
+  "code": "",
+  "expiration": null,
   "restant": null,
-  "misAJour": "2026-08-25T12:15:24.697Z"
+  "misAJour": "2026-08-25T12:20:24.662Z"
 }
