@@ -83,6 +83,12 @@
   .msg.error { color: #c0392b; }
   .msg.success { color: #1a8a4a; }
 
+  .switch-mode { text-align: center; margin-top: 14px; font-size: 12.5px; }
+  .switch-mode a { color: var(--grey-text); text-decoration: none; }
+  .switch-mode a:hover { color: var(--black); text-decoration: underline; }
+  .checkbox-label { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; color: var(--black); margin-bottom: 14px; cursor: pointer; }
+  .checkbox-label input { width: auto; margin: 0; }
+
   #loginView { display: block; }
   #dashboardView { display: none; }
 
@@ -162,6 +168,7 @@
         <input type="email" id="loginEmail" placeholder="toi@exemple.com" required>
         <div class="msg" id="emailMsg"></div>
         <button class="btn" id="sendCodeBtn">Recevoir mon code</button>
+        <div class="switch-mode"><a href="#" id="showPasswordModeLink">Se connecter avec un mot de passe →</a></div>
       </div>
       <div id="stepCode" style="display:none">
         <p class="sub" style="margin-top:0">Un code à 6 chiffres vient d'être envoyé à <strong id="codeEmailLabel"></strong>.</p>
@@ -170,6 +177,26 @@
         <div class="msg" id="codeMsg"></div>
         <button class="btn" id="verifyCodeBtn">Se connecter</button>
         <button class="btn secondary" id="backToEmailBtn" style="margin-left:8px">← Changer d'email</button>
+      </div>
+      <div id="stepPassword" style="display:none">
+        <label for="loginEmailPwd">Adresse email</label>
+        <input type="email" id="loginEmailPwd" placeholder="toi@exemple.com">
+        <label for="loginPassword">Mot de passe</label>
+        <input type="password" id="loginPassword" placeholder="••••••••">
+        <label class="checkbox-label"><input type="checkbox" id="rememberMe" checked> Rester connecté</label>
+        <div class="msg" id="passwordMsg"></div>
+        <button class="btn" id="loginPasswordBtn">Se connecter</button>
+        <button class="btn secondary" id="backToEmailFromPwdBtn" style="margin-left:8px">← Recevoir un code par email</button>
+      </div>
+      <div id="stepSetPassword" style="display:none">
+        <p class="sub" style="margin-top:0">Configure un mot de passe pour te connecter plus vite la prochaine fois (optionnel).</p>
+        <label for="newPassword">Nouveau mot de passe</label>
+        <input type="password" id="newPassword" placeholder="8 caractères minimum">
+        <label for="newPasswordConfirm">Confirmer le mot de passe</label>
+        <input type="password" id="newPasswordConfirm" placeholder="••••••••">
+        <div class="msg" id="setPasswordMsg"></div>
+        <button class="btn" id="setPasswordBtn">Configurer</button>
+        <button class="btn secondary" id="skipSetPasswordBtn" style="margin-left:8px">Passer cette étape</button>
       </div>
     </div>
 
@@ -183,7 +210,7 @@
 
     <div class="card">
       <h2>Parrainage & cashback</h2>
-      <p class="sub">Partage ton code, gagne 10% de cashback à chaque commande passée avec.</p>
+      <p class="sub">Partage ton code : ton ami économise 5 €, et tu gagnes 10 € de cashback à chaque commande passée avec.</p>
       <div class="stats-grid">
         <div class="stat-box"><div class="val" id="statCashback">0 €</div><div class="lbl">Disponible</div></div>
         <div class="stat-box"><div class="val" id="statTotal">0 €</div><div class="lbl">Total gagné</div></div>
@@ -196,6 +223,14 @@
       <div class="link-row">
         <span id="lienParrainLabel">—</span>
         <button type="button" id="copyLienBtn">Copier</button>
+      </div>
+      <div class="switch-mode" style="text-align:left;margin-top:10px"><a href="#" id="editCodeLink">Personnaliser mon code →</a></div>
+      <div id="editCodeForm" style="display:none;margin-top:10px">
+        <label for="newCodeParrain">Nouveau code (3 à 20 lettres/chiffres, sans espace)</label>
+        <input type="text" id="newCodeParrain" placeholder="MONCODE" maxlength="20">
+        <div class="msg" id="codeParrainMsg"></div>
+        <button type="button" class="btn small" id="saveCodeBtn">Enregistrer</button>
+        <button type="button" class="btn secondary small" id="cancelCodeBtn" style="margin-left:8px">Annuler</button>
       </div>
     </div>
 
@@ -225,6 +260,17 @@
       <div id="ordersWrap"><p class="empty-note">Chargement…</p></div>
     </div>
 
+    <div class="card">
+      <h2>Sécurité</h2>
+      <p class="sub">Configure ou modifie ton mot de passe pour te connecter plus vite.</p>
+      <label for="chgNewPassword">Nouveau mot de passe</label>
+      <input type="password" id="chgNewPassword" placeholder="8 caractères minimum">
+      <label for="chgNewPasswordConfirm">Confirmer le mot de passe</label>
+      <input type="password" id="chgNewPasswordConfirm" placeholder="••••••••">
+      <div class="msg" id="chgPasswordMsg"></div>
+      <button class="btn" id="chgPasswordBtn">Enregistrer le mot de passe</button>
+    </div>
+
     <div class="logout-link"><a href="#" id="logoutLink">Se déconnecter</a></div>
   </div>
 
@@ -245,22 +291,35 @@ const DEMANDER_CODE_URL = BASE + 'demander-code-connexion';
 const VERIFIER_CODE_URL = BASE + 'verifier-code-connexion';
 const RECUPERER_COMPTE_URL = BASE + 'recuperer-compte';
 const MAJ_COORD_URL = BASE + 'mettre-a-jour-coordonnees';
+const CONNEXION_MDP_URL = BASE + 'connexion-mot-de-passe';
+const DEFINIR_MDP_URL = BASE + 'definir-mot-de-passe';
+const MODIFIER_CODE_URL = BASE + 'modifier-code-parrain';
 
 function fmtPrice(n) {
   return (Number(n) || 0).toFixed(2).replace('.', ',') + ' €';
 }
 
 function getAccount() {
-  try { return JSON.parse(localStorage.getItem('kta_account') || 'null'); } catch (e) { return null; }
+  try {
+    return JSON.parse(localStorage.getItem('kta_account') || sessionStorage.getItem('kta_account') || 'null');
+  } catch (e) { return null; }
 }
-function setAccount(acc) {
-  localStorage.setItem('kta_account', JSON.stringify(acc));
+function setAccount(acc, remember) {
+  if (remember === false) {
+    sessionStorage.setItem('kta_account', JSON.stringify(acc));
+    localStorage.removeItem('kta_account');
+  } else {
+    localStorage.setItem('kta_account', JSON.stringify(acc));
+    sessionStorage.removeItem('kta_account');
+  }
 }
 function clearAccount() {
   localStorage.removeItem('kta_account');
+  sessionStorage.removeItem('kta_account');
 }
 
 let pendingEmail = '';
+let pendingLoginData = null;
 
 document.getElementById('sendCodeBtn').addEventListener('click', async () => {
   const emailInput = document.getElementById('loginEmail');
@@ -324,6 +383,60 @@ document.getElementById('verifyCodeBtn').addEventListener('click', async () => {
       return;
     }
     setAccount({ email: data.email, token: data.token });
+    if (data.hasMotDePasse) {
+      loadDashboard(data);
+    } else {
+      pendingLoginData = data;
+      document.getElementById('stepCode').style.display = 'none';
+      document.getElementById('stepSetPassword').style.display = 'block';
+    }
+  } catch (err) {
+    msg.textContent = 'Erreur de connexion. Réessaie.';
+    msg.className = 'msg error';
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Se connecter';
+  }
+});
+
+document.getElementById('showPasswordModeLink').addEventListener('click', (e) => {
+  e.preventDefault();
+  document.getElementById('stepEmail').style.display = 'none';
+  document.getElementById('stepPassword').style.display = 'block';
+});
+
+document.getElementById('backToEmailFromPwdBtn').addEventListener('click', () => {
+  document.getElementById('stepPassword').style.display = 'none';
+  document.getElementById('stepEmail').style.display = 'block';
+});
+
+document.getElementById('loginPasswordBtn').addEventListener('click', async () => {
+  const email = document.getElementById('loginEmailPwd').value.trim();
+  const password = document.getElementById('loginPassword').value;
+  const remember = document.getElementById('rememberMe').checked;
+  const msg = document.getElementById('passwordMsg');
+  msg.textContent = '';
+  if (!email || !email.includes('@') || !password) {
+    msg.textContent = 'Entre ton email et ton mot de passe.';
+    msg.className = 'msg error';
+    return;
+  }
+  const btn = document.getElementById('loginPasswordBtn');
+  btn.disabled = true;
+  btn.textContent = 'Connexion…';
+  try {
+    const res = await fetch(CONNEXION_MDP_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password })
+    });
+    const data = await res.json().catch(() => ({ success: false }));
+    if (!data.success) {
+      msg.textContent = data.message || 'Email ou mot de passe incorrect.';
+      msg.className = 'msg error';
+      return;
+    }
+    setAccount({ email: data.email, token: data.token }, remember);
     loadDashboard(data);
   } catch (err) {
     msg.textContent = 'Erreur de connexion. Réessaie.';
@@ -334,15 +447,117 @@ document.getElementById('verifyCodeBtn').addEventListener('click', async () => {
   }
 });
 
+function passwordStepReset() {
+  document.getElementById('stepSetPassword').style.display = 'none';
+  document.getElementById('newPassword').value = '';
+  document.getElementById('newPasswordConfirm').value = '';
+  loadDashboard(pendingLoginData);
+}
+
+document.getElementById('setPasswordBtn').addEventListener('click', async () => {
+  const p1 = document.getElementById('newPassword').value;
+  const p2 = document.getElementById('newPasswordConfirm').value;
+  const msg = document.getElementById('setPasswordMsg');
+  msg.textContent = '';
+  if (!p1 || p1.length < 8) {
+    msg.textContent = 'Le mot de passe doit contenir au moins 8 caractères.';
+    msg.className = 'msg error';
+    return;
+  }
+  if (p1 !== p2) {
+    msg.textContent = 'Les mots de passe ne correspondent pas.';
+    msg.className = 'msg error';
+    return;
+  }
+  const acc = getAccount();
+  if (!acc) return;
+  const btn = document.getElementById('setPasswordBtn');
+  btn.disabled = true;
+  btn.textContent = 'Enregistrement…';
+  try {
+    const res = await fetch(DEFINIR_MDP_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: acc.email, token: acc.token, password: p1 })
+    });
+    const data = await res.json().catch(() => ({ success: false }));
+    if (!data.success) {
+      msg.textContent = data.message || 'Erreur, réessaie.';
+      msg.className = 'msg error';
+      btn.disabled = false;
+      btn.textContent = 'Configurer';
+      return;
+    }
+  } catch (err) {
+    // erreur réseau : on n'empêche pas l'accès au tableau de bord
+  }
+  btn.disabled = false;
+  btn.textContent = 'Configurer';
+  passwordStepReset();
+});
+
+document.getElementById('skipSetPasswordBtn').addEventListener('click', () => {
+  passwordStepReset();
+});
+
+document.getElementById('chgPasswordBtn').addEventListener('click', async () => {
+  const p1 = document.getElementById('chgNewPassword').value;
+  const p2 = document.getElementById('chgNewPasswordConfirm').value;
+  const msg = document.getElementById('chgPasswordMsg');
+  msg.textContent = '';
+  if (!p1 || p1.length < 8) {
+    msg.textContent = 'Le mot de passe doit contenir au moins 8 caractères.';
+    msg.className = 'msg error';
+    return;
+  }
+  if (p1 !== p2) {
+    msg.textContent = 'Les mots de passe ne correspondent pas.';
+    msg.className = 'msg error';
+    return;
+  }
+  const acc = getAccount();
+  if (!acc) return;
+  const btn = document.getElementById('chgPasswordBtn');
+  btn.disabled = true;
+  btn.textContent = 'Enregistrement…';
+  try {
+    const res = await fetch(DEFINIR_MDP_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: acc.email, token: acc.token, password: p1 })
+    });
+    const data = await res.json().catch(() => ({ success: false }));
+    if (data.success) {
+      msg.textContent = '✓ Mot de passe mis à jour.';
+      msg.className = 'msg success';
+      document.getElementById('chgNewPassword').value = '';
+      document.getElementById('chgNewPasswordConfirm').value = '';
+    } else {
+      msg.textContent = data.message || 'Erreur, réessaie de te reconnecter.';
+      msg.className = 'msg error';
+    }
+  } catch (err) {
+    msg.textContent = 'Erreur de connexion. Réessaie.';
+    msg.className = 'msg error';
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Enregistrer le mot de passe';
+  }
+});
+
 document.getElementById('logoutLink').addEventListener('click', (e) => {
   e.preventDefault();
   clearAccount();
   document.getElementById('dashboardView').style.display = 'none';
   document.getElementById('loginView').style.display = 'block';
   document.getElementById('stepCode').style.display = 'none';
+  document.getElementById('stepPassword').style.display = 'none';
+  document.getElementById('stepSetPassword').style.display = 'none';
   document.getElementById('stepEmail').style.display = 'block';
   document.getElementById('loginEmail').value = '';
   document.getElementById('loginCode').value = '';
+  document.getElementById('loginEmailPwd').value = '';
+  document.getElementById('loginPassword').value = '';
 });
 
 document.getElementById('copyCodeBtn').addEventListener('click', function () {
@@ -354,6 +569,57 @@ document.getElementById('copyLienBtn').addEventListener('click', function () {
   navigator.clipboard.writeText(document.getElementById('lienParrainLabel').textContent);
   this.textContent = 'Copié ✓';
   setTimeout(() => { this.textContent = 'Copier'; }, 2000);
+});
+
+document.getElementById('editCodeLink').addEventListener('click', (e) => {
+  e.preventDefault();
+  const current = document.getElementById('codeParrainLabel').textContent;
+  document.getElementById('newCodeParrain').value = current === '—' ? '' : current;
+  document.getElementById('codeParrainMsg').textContent = '';
+  document.getElementById('editCodeForm').style.display = 'block';
+});
+
+document.getElementById('cancelCodeBtn').addEventListener('click', () => {
+  document.getElementById('editCodeForm').style.display = 'none';
+  document.getElementById('codeParrainMsg').textContent = '';
+});
+
+document.getElementById('saveCodeBtn').addEventListener('click', async () => {
+  const raw = document.getElementById('newCodeParrain').value.trim().toUpperCase();
+  const msg = document.getElementById('codeParrainMsg');
+  msg.textContent = '';
+  if (!/^[A-Z0-9]{3,20}$/.test(raw)) {
+    msg.textContent = 'Le code doit contenir entre 3 et 20 lettres/chiffres, sans espace.';
+    msg.className = 'msg error';
+    return;
+  }
+  const acc = getAccount();
+  if (!acc) return;
+  const btn = document.getElementById('saveCodeBtn');
+  btn.disabled = true;
+  btn.textContent = 'Enregistrement…';
+  try {
+    const res = await fetch(MODIFIER_CODE_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: acc.email, token: acc.token, code: raw })
+    });
+    const data = await res.json().catch(() => ({ success: false }));
+    if (data.success) {
+      document.getElementById('codeParrainLabel').textContent = raw;
+      document.getElementById('lienParrainLabel').textContent = `https://kta-labs.github.io/ktalabs.com/catalogue.html?code=${encodeURIComponent(raw)}`;
+      document.getElementById('editCodeForm').style.display = 'none';
+    } else {
+      msg.textContent = data.message || 'Ce code est déjà utilisé, choisis-en un autre.';
+      msg.className = 'msg error';
+    }
+  } catch (err) {
+    msg.textContent = 'Erreur de connexion. Réessaie.';
+    msg.className = 'msg error';
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Enregistrer';
+  }
 });
 
 document.getElementById('coordForm').addEventListener('submit', async (e) => {
