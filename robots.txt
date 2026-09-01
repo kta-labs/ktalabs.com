@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /compte.html
+Disallow: /suivi.html
+Disallow: /facture.html
+
+Sitemap: https://kta-labs.github.io/ktalabs.com/sitemap.xml
