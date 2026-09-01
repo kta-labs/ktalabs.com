@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KTA Labs — Suivre ma commande</title>
+<link rel="icon" href="images/logo.png">
+<style>
+  :root {
+    --black: #16204a;
+    --navy-deep: #0e1730;
+    --blue-accent: #4d6fb8;
+    --grey-text: #6b7280;
+    --border: #e8eaf1;
+    --bg: #f8f9fc;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--black);
+  }
+  .top-accent {
+    height: 4px;
+    width: 100%;
+    background: linear-gradient(90deg, var(--navy-deep), var(--blue-accent) 55%, #a9c1e8);
+  }
+  .top-bar {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 20px 24px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .top-bar img.mini-logo { height: 28px; }
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--grey-text);
+    text-decoration: none;
+    font-size: 13px;
+  }
+  .back-link:hover { color: var(--black); }
+  main {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 24px 24px 80px;
+  }
+  @media (max-width: 480px) {
+    main { padding: 20px 12px 80px; }
+    .card { padding: 16px; }
+  }
+  h1 {
+    font-size: 22px;
+    margin: 10px 0 6px;
+  }
+  .intro {
+    color: var(--grey-text);
+    font-size: 14px;
+    margin: 0 0 24px;
+    line-height: 1.5;
+  }
+  .card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 22px;
+  }
+  .form-row { margin-bottom: 14px; }
+  .form-row label {
+    display: block;
+    font-size: 12.5px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .form-row input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-size: 16px;
+    font-family: inherit;
+    color: var(--black);
+    background: #fff;
+  }
+  .form-row input:focus {
+    outline: none;
+    border-color: var(--blue-accent);
+  }
+  .form-hint {
+    font-size: 11.5px;
+    color: var(--grey-text);
+    margin: -6px 0 16px;
+  }
+  .submit-btn {
+    width: 100%;
+    padding: 13px;
+    border-radius: 999px;
+    background: var(--black);
+    color: #fff;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .submit-btn:hover { background: var(--navy-deep); }
+  .submit-btn:disabled { opacity: .6; cursor: default; }
+
+  .error-box {
+    display: none;
+    background: #fdecec;
+    color: #c0392b;
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 13.5px;
+    margin-top: 16px;
+  }
+  .error-box.visible { display: block; }
+
+  .result-card { display: none; margin-top: 20px; }
+  .result-card.visible { display: block; }
+  .result-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+  .result-header h2 {
+    font-size: 16px;
+    margin: 0;
+  }
+  .status-badge {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 999px;
+  }
+  .status-badge.nouvelle { background: #fdecec; color: #c0392b; }
+  .status-badge.expediee { background: #eafaf0; color: #1a8a4a; }
+  .status-badge.autre { background: #f0f1f5; color: var(--grey-text); }
+
+  .result-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13.5px;
+  }
+  .result-row:last-of-type { border-bottom: none; }
+  .result-row .label { color: var(--grey-text); }
+  .result-row .value { font-weight: 600; text-align: right; }
+
+  .invoice-btn {
+    display: block;
+    text-align: center;
+    width: 100%;
+    padding: 13px;
+    border-radius: 999px;
+    background: var(--black);
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 18px;
+  }
+  .invoice-btn:hover { background: var(--navy-deep); }
+  .payment-note {
+    font-size: 12px;
+    color: var(--grey-text);
+    text-align: center;
+    margin-top: 10px;
+    line-height: 1.5;
+  }
+  .payment-box {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 8px;
+    font-size: 13.5px;
+    line-height: 1.6;
+    margin-top: 18px;
+  }
+  .payment-box strong { color: var(--black); }
+  .pay-link {
+    display: inline-block;
+    margin-top: 8px;
+    color: var(--blue-accent);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 13px;
+  }
+  .pay-link:hover { text-decoration: underline; }
+  .iban-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 6px;
+    margin-top: 6px;
+    flex-wrap: nowrap;
+  }
+  .iban-row span {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--black);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+    flex-shrink: 1;
+  }
+  .copy-iban-btn {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 2px 8px;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--black);
+    cursor: pointer;
+  }
+  .copy-iban-btn:hover { background: #f2f2f2; }
+  .paid-btn {
+    width: 100%;
+    padding: 13px;
+    border-radius: 999px;
+    background: var(--black);
+    color: #fff;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  .paid-btn:hover { background: var(--navy-deep); }
+  .paid-btn:disabled { opacity: .6; cursor: default; }
+  #paidConfirmMsg {
+    font-size: 13px;
+    color: #1a8a4a;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 10px;
+    display: none;
+  }
+  footer {
+    text-align: center;
+    padding: 30px 20px 50px;
+    font-size: 12px;
+    color: var(--grey-text);
+  }
+  .contact-block {
+    margin-bottom: 22px;
+  }
+  .contact-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--black);
+    margin: 0 0 12px;
+  }
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .contact-links a {
+    border: 1px solid var(--border);
+    background: #fff;
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--black);
+    text-decoration: none;
+    transition: background .15s, border-color .15s;
+  }
+  .contact-links a:hover {
+    background: var(--black);
+    color: #fff;
+    border-color: var(--black);
+  }
+</style>
+</head>
+<body>
+
+<div class="top-accent"></div>
+
+<div class="top-bar">
+  <a class="back-link" href="catalogue.html">← Retour au catalogue</a>
+  <img class="mini-logo" src="images/logo.png" alt="KTA Labs">
+</div>
+
+<main>
+  <h1>Suivre ma commande</h1>
+  <p class="intro">Entre l'email utilisé lors de la commande et ton numéro de commande (indiqué sur ta facture) pour voir son statut.</p>
+
+  <div class="card">
+    <form id="trackForm">
+      <div class="form-row">
+        <label>Email *</label>
+        <input type="email" id="t_email" required>
+      </div>
+      <div class="form-row">
+        <label>Numéro de commande *</label>
+        <input id="t_orderNumber" placeholder="ex : CMD-42" required>
+      </div>
+      <div class="form-hint">Le numéro de commande figure sur la facture reçue par email.</div>
+      <button type="submit" class="submit-btn" id="trackBtn">Vérifier</button>
+      <div class="error-box" id="errorBox">Aucune commande ne correspond à cet email et ce numéro. Vérifie les informations saisies.</div>
+    </form>
+
+    <div class="result-card" id="resultCard">
+      <div class="result-header">
+        <h2 id="resultOrderNumber"></h2>
+        <span class="status-badge" id="resultStatus"></span>
+      </div>
+      <div class="result-row"><span class="label">Commande</span><span class="value" id="resultProduits"></span></div>
+      <div class="result-row"><span class="label">Mode de livraison</span><span class="value" id="resultLivraison"></span></div>
+      <div class="result-row"><span class="label">Paiement</span><span class="value" id="resultPaiement"></span></div>
+      <div class="result-row"><span class="label">Total</span><span class="value" id="resultTotal"></span></div>
+      <div class="result-row" id="resultSuiviRow"><span class="label">N° de suivi</span><span class="value" id="resultSuivi"></span></div>
+      <a class="invoice-btn" id="resultInvoiceBtn" href="#" target="_blank">Télécharger la facture</a>
+
+      <div id="pendingPaymentBlock" style="display:none">
+        <div class="payment-box" id="resultPaymentBox"></div>
+        <button class="paid-btn" id="paidBtn">J'ai effectué le paiement</button>
+        <div id="paidConfirmMsg">Merci, on vérifie ça et on revient vite vers toi !</div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="contact-block">
+    <p class="contact-title">Une question ? Rejoins-nous</p>
+    <div class="contact-links">
+      <a href="https://discord.gg/dTJmAeesFq" target="_blank" rel="noopener">Discord</a>
+      <a href="https://t.me/ktalabsbylau" target="_blank" rel="noopener">Telegram</a>
+      <a href="mailto:ktalabs.contact@gmail.com">ktalabs.contact@gmail.com</a>
+    </div>
+  </div>
+  <div style="margin:10px 0">
+    <a href="mentions-legales.html" style="color:var(--grey-text);text-decoration:none;margin:0 8px">Mentions légales</a>·
+    <a href="cgv.html" style="color:var(--grey-text);text-decoration:none;margin:0 8px">CGV</a>·
+    <a href="confidentialite.html" style="color:var(--grey-text);text-decoration:none;margin:0 8px">Confidentialité</a>
+  </div>
+  KTA Labs — mis à jour automatiquement
+</footer>
+
+<script>
+const TRACKING_WEBHOOK_URL = "https://nathand.app.n8n.cloud/webhook/suivi-commande";
+const PAYMENT_CONFIRM_WEBHOOK_URL = "https://nathand.app.n8n.cloud/webhook/paiement-effectue";
+
+function fmtPrice(n) {
+  if (n === null || n === undefined || isNaN(n)) return '—';
+  return Number(n).toFixed(2).replace('.', ',') + ' €';
+}
+
+function paymentInfoHtml(mode, montant, orderNumber) {
+  const total = fmtPrice(montant);
+  const amountRaw = (Math.round((Number(montant) + Number.EPSILON) * 100) / 100).toFixed(2);
+  if (mode === 'PayPal') {
+    const paypalLink = `https://paypal.me/ktalabs/${amountRaw}EUR`;
+    return `<strong>PayPal</strong><br>Merci d'envoyer ${total} à <strong>@ktalabs</strong>, en choisissant l'option "Proches / Amis-famille" afin d'éviter les frais.<br><a class="pay-link" href="${paypalLink}" target="_blank" rel="noopener">→ Cliquer ici pour payer directement, montant déjà rempli</a>`;
+  }
+  if (mode === 'Revolut') {
+    return `<strong>Revolut</strong><br>Merci d'envoyer ${total} à <strong>@ktalabs</strong> depuis l'app Revolut : onglet "Payer", recherche <strong>@ktalabs</strong>, puis indique le montant toi-même.`;
+  }
+  if (mode === 'Virement bancaire') {
+    const iban = 'FR7640618805120004080604597';
+    const titulaire = 'Dujarric';
+    const refRow = orderNumber
+      ? `<div class="iban-row"><span>Référence du virement : <strong>${orderNumber}</strong></span><button type="button" class="copy-iban-btn" onclick="navigator.clipboard.writeText('${orderNumber}');this.textContent='Copié ✓';setTimeout(()=>{this.textContent='Copier'},2000)">Copier</button></div>`
+      : '';
+    return `<strong>Virement bancaire</strong><br>Merci d'effectuer un virement de ${total} aux coordonnées suivantes :<div class="iban-row"><span>IBAN : ${iban}</span><button type="button" class="copy-iban-btn" onclick="navigator.clipboard.writeText('${iban}');this.textContent='Copié ✓';setTimeout(()=>{this.textContent='Copier'},2000)">Copier</button></div><div class="iban-row"><span>Titulaire : ${titulaire}</span><button type="button" class="copy-iban-btn" onclick="navigator.clipboard.writeText('${titulaire}');this.textContent='Copié ✓';setTimeout(()=>{this.textContent='Copier'},2000)">Copier</button></div>${refRow}<div style="margin-top:8px;font-size:12.5px;color:var(--grey-text)">⚠️ Important : indique bien <strong>${orderNumber || 'ton numéro de commande'}</strong> en référence/motif du virement, pour qu'on puisse identifier facilement ton paiement.</div>`;
+  }
+  return `Montant à régler : ${total}`;
+}
+
+const orderInput = document.getElementById('t_orderNumber');
+if (!orderInput.value) orderInput.value = 'CMD-';
+
+const urlParams = new URLSearchParams(window.location.search);
+const prefillEmail = urlParams.get('email');
+const prefillOrder = urlParams.get('order');
+if (prefillEmail) document.getElementById('t_email').value = prefillEmail;
+if (prefillOrder) orderInput.value = prefillOrder;
+
+document.getElementById('trackForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const btn = document.getElementById('trackBtn');
+  const errorBox = document.getElementById('errorBox');
+  const resultCard = document.getElementById('resultCard');
+  errorBox.classList.remove('visible');
+  resultCard.classList.remove('visible');
+  btn.disabled = true;
+  btn.textContent = 'Recherche…';
+
+  try {
+    const res = await fetch(TRACKING_WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: document.getElementById('t_email').value.trim(),
+        orderNumber: document.getElementById('t_orderNumber').value.trim()
+      })
+    });
+    const data = await res.json();
+
+    if (!res.ok || !data.found) {
+      errorBox.classList.add('visible');
+      return;
+    }
+
+    document.getElementById('resultOrderNumber').textContent = data.orderNumber || '';
+
+    const statusEl = document.getElementById('resultStatus');
+    const statut = data.statut || '';
+    statusEl.textContent = statut || '—';
+    statusEl.className = 'status-badge ' + (
+      statut === 'Expédiée' ? 'expediee' : statut === 'Nouvelle' ? 'nouvelle' : 'autre'
+    );
+
+    document.getElementById('resultProduits').textContent = data.produits || '—';
+    document.getElementById('resultLivraison').textContent = data.modeLivraison || '—';
+    document.getElementById('resultPaiement').textContent = data.paiement || '—';
+    document.getElementById('resultTotal').textContent = fmtPrice(data.prixTotal);
+
+    const suiviRow = document.getElementById('resultSuiviRow');
+    if (data.numeroSuivi) {
+      suiviRow.style.display = '';
+      document.getElementById('resultSuivi').textContent = data.numeroSuivi;
+    } else {
+      suiviRow.style.display = 'none';
+    }
+
+    const invoiceBtn = document.getElementById('resultInvoiceBtn');
+    if (data.factureUrl && data.orderNumber) {
+      invoiceBtn.style.display = '';
+      invoiceBtn.href = `facture.html?id=${encodeURIComponent(data.orderNumber)}`;
+    } else {
+      invoiceBtn.style.display = 'none';
+    }
+
+    const pendingBlock = document.getElementById('pendingPaymentBlock');
+    const paidBtn = document.getElementById('paidBtn');
+    const paidConfirmMsg = document.getElementById('paidConfirmMsg');
+    const alreadySignaled = localStorage.getItem('kta_paid_' + data.orderNumber) === '1';
+
+    if (data.paiement !== 'Effectué') {
+      pendingBlock.style.display = '';
+      document.getElementById('resultPaymentBox').innerHTML = paymentInfoHtml(data.modePaiement, data.prixTotal, data.orderNumber);
+      paidBtn.dataset.email = document.getElementById('t_email').value.trim();
+      paidBtn.dataset.orderNumber = data.orderNumber;
+      if (alreadySignaled) {
+        paidBtn.style.display = 'none';
+        paidConfirmMsg.textContent = 'Paiement signalé, en cours de vérification. Tu recevras un email dès que ce sera confirmé.';
+        paidConfirmMsg.style.display = 'block';
+      } else {
+        paidBtn.style.display = '';
+        paidBtn.disabled = false;
+        paidBtn.textContent = "J'ai effectué le paiement";
+        paidConfirmMsg.style.display = 'none';
+      }
+    } else {
+      pendingBlock.style.display = 'none';
+    }
+
+    resultCard.classList.add('visible');
+  } catch (err) {
+    errorBox.textContent = "Une erreur est survenue. Réessaie dans un instant.";
+    errorBox.classList.add('visible');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Vérifier';
+  }
+});
+
+document.getElementById('paidBtn').addEventListener('click', async () => {
+  const paidBtn = document.getElementById('paidBtn');
+  paidBtn.disabled = true;
+  paidBtn.textContent = 'Envoi…';
+  try {
+    await fetch(PAYMENT_CONFIRM_WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: paidBtn.dataset.email, orderNumber: paidBtn.dataset.orderNumber })
+    });
+  } catch (err) {}
+  if (paidBtn.dataset.orderNumber) localStorage.setItem('kta_paid_' + paidBtn.dataset.orderNumber, '1');
+  paidBtn.style.display = 'none';
+  const paidConfirmMsg = document.getElementById('paidConfirmMsg');
+  paidConfirmMsg.textContent = 'Merci, on vérifie ça — tu recevras un email dès que le paiement sera confirmé.';
+  paidConfirmMsg.style.display = 'block';
+});
+
+if (prefillEmail && prefillOrder) {
+  document.getElementById('trackForm').requestSubmit();
+}
+</script>
+
+</body>
+</html>
