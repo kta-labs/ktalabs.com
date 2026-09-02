@@ -1380,7 +1380,7 @@ function paymentInfoHtml(mode, montant, orderNumber) {
     const noteRow = orderNumber
       ? `<div style="margin-top:8px;font-size:12.5px;color:var(--grey-text)">⚠️ Important : indique <strong>${orderNumber}</strong> dans le message du paiement, pour qu'on puisse identifier facilement ton paiement.</div>`
       : '';
-    return `<strong>Revolut</strong><br>Merci d'envoyer ${total} à <strong>@ktalabs</strong> depuis l'app Revolut : clique sur "Rechercher", recherche <strong>@ktalabs</strong>, puis clique sur "Envoyer" et indique le montant toi-même.${noteRow}`;
+    return `<strong>Revolut</strong><br>Merci d'envoyer ${total} à <strong>@ktalabs</strong> depuis l'app Revolut : clique sur <strong>"Rechercher"</strong>, recherche <strong>@ktalabs</strong>, puis clique sur <strong>"Envoyer"</strong> et indique le montant toi-même.${noteRow}`;
   }
   if (mode === 'Virement bancaire') {
     const iban = 'FR7640618805120004080604597';
