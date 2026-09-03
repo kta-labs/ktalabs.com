@@ -21,8 +21,7 @@
     "ficheId": "retatrutide",
     "image": "images/reta-20mg-v2.jpg",
     "tallyLabel": "Retatrutide 20MG",
-    "tallyQtyField": "qte_reta20",
-    "prixPromo": 92
+    "tallyQtyField": "qte_reta20"
   },
   {
     "sku": "ghk",
@@ -132,7 +131,8 @@
     ],
     "image": "images/kit-reta20-v2.jpg",
     "tallyLabel": "Kit de reconstitution + injection Retatrutide 20MG",
-    "tallyQtyField": "qte_kit_reta20"
+    "tallyQtyField": "qte_kit_reta20",
+    "prixPromo": 104
   },
   {
     "sku": "kit-ghk",
