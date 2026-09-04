@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Facture CMD-284 — KTA Labs</title>
+<style>
+  :root { --black:#16204a; --navy-deep:#0e1730; --blue-accent:#4d6fb8; --grey-text:#6b7280; --border:#e8eaf1; }
+  * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  html, body { margin:0; background:#e9ebf1; }
+  body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif; color:var(--black); }
+  .top-accent { height:6px; background:linear-gradient(90deg,var(--navy-deep),var(--blue-accent) 55%,#a9c1e8); }
+  .sheet { width:210mm; max-width:100%; min-height:297mm; margin:0 auto; background:#fff; padding:18mm 18mm 20mm; }
+  .header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:36px; }
+  .header img { height:44px; }
+  .header h1 { font-size:28px; margin:0; letter-spacing:1px; text-align:right; }
+  .header .meta { text-align:right; color:var(--grey-text); font-size:13px; margin-top:6px; }
+  .cols { display:flex; justify-content:space-between; gap:24px; margin-bottom:32px; }
+  .col h2 { font-size:11px; text-transform:uppercase; letter-spacing:1px; color:var(--grey-text); margin:0 0 8px; }
+  .col p { margin:0; font-size:13.5px; line-height:1.6; }
+  table { width:100%; border-collapse:collapse; margin-bottom:6px; }
+  thead tr { background:var(--black); color:#fff; }
+  th, td { padding:10px 12px; font-size:13.5px; text-align:left; }
+  th.center, td.center { text-align:center; }
+  th.right, td.right { text-align:right; }
+  tbody tr { border-bottom:1px solid var(--border); }
+  .total-row td { border-top:2px solid var(--black); font-weight:700; padding-top:14px; }
+  .paiement { margin-top:34px; background:#f8f9fc; border:1px solid var(--border); border-radius:12px; padding:20px 22px; }
+  .paiement h2 { font-size:11px; text-transform:uppercase; letter-spacing:1px; color:var(--grey-text); margin:0 0 10px; }
+  .paiement p { margin:0 0 10px; font-size:13.5px; line-height:1.6; }
+  .track-btn { display:inline-block; margin-top:6px; background:var(--black); color:#fff; text-decoration:none; font-size:13px; font-weight:600; padding:10px 20px; border-radius:999px; }
+  .footer { margin-top:36px; font-size:11px; color:#a0a0a0; text-align:center; line-height:1.5; }
+  .back-btn { position:fixed; top:14px; right:14px; z-index:10; display:inline-flex; align-items:center; gap:4px; background:#fff; border:1px solid var(--border); color:var(--black); text-decoration:none; font-size:12.5px; font-weight:600; padding:8px 14px; border-radius:999px; box-shadow:0 2px 8px rgba(22,32,74,0.12); }
+  @media screen and (max-width: 700px) {
+    html, body { background:#fff; }
+    .top-accent { height:4px; }
+    .sheet { width:100%; min-height:0; padding:56px 14px 30px; }
+    .header { flex-direction:column; gap:14px; }
+    .header h1, .header .meta { text-align:left; }
+    .header img { height:36px; }
+    .cols { flex-direction:column; gap:18px; margin-bottom:24px; }
+    table { table-layout:fixed; }
+    th, td { padding:7px 5px; font-size:11px; word-break:break-word; }
+    th:nth-child(1), td:nth-child(1) { width:38%; }
+    th:nth-child(2), td:nth-child(2) { width:16%; }
+    th:nth-child(3), td:nth-child(3) { width:23%; }
+    th:nth-child(4), td:nth-child(4) { width:23%; }
+    td.center, td.right { white-space:nowrap; }
+  }
+  @media print {
+    @page { size: A4; margin: 0; }
+    html, body { background:#fff; }
+    .sheet { padding:15mm 18mm 20mm; }
+    .back-btn { display:none; }
+  }
+</style>
+</head>
+<body>
+<div class="top-accent"></div>
+<a class="back-btn" href="#" onclick="if (window.history.length > 1) { history.back(); } else { window.location.href = 'https://kta-labs.github.io/ktalabs.com/suivi.html?email=nathand112008%40gmail.com&order=CMD-284'; } return false;">← Retour</a>
+<div class="sheet">
+  <div class="header">
+    <img src="https://kta-labs.github.io/ktalabs.com/images/logo.png" alt="KTA Labs">
+    <div><h1>FACTURE</h1><div class="meta">N° CMD-284<br>Date : 04/09/2026</div></div>
+  </div>
+  <div class="cols">
+    <div class="col">
+      <h2>Facturé à</h2>
+      <p>Nathan Dujarric<br>4 Le Moulin Du Dognon<br>8780 Meilhac<br>France<br>06222444<br>nathand112008@gmail.com</p>
+    </div>
+    <div class="col">
+      <h2>Livraison</h2>
+      <p>Colissimo à domicile 8€</p>
+    </div>
+  </div>
+  <table>
+    <thead><tr><th>Description</th><th class="center">Quantité</th><th class="center">Prix unitaire</th><th class="right">Sous-total</th></tr></thead>
+    <tbody>
+  <tr><td>Kit de reconstitution + injection Retatrutide 20MG</td><td class="center">1</td><td class="center">104,00 €</td><td class="right">104,00 €</td></tr>
+
+  <tr><td>Livraison (Colissimo à domicile 8€)</td><td class="center">1</td><td class="center">-</td><td class="right">8,00 €</td></tr>
+
+  <tr><td>Cashback utilisé</td><td class="center">1</td><td class="center">-</td><td class="right">-20,00 €</td></tr>
+</tbody>
+    <tfoot><tr class="total-row"><td colspan="3">TOTAL</td><td class="right">92,00 €</td></tr></tfoot>
+  </table>
+  <div class="paiement">
+    <h2>Coordonnées de paiement</h2>
+    <p>Mode de paiement choisi : <strong>PayPal</strong></p>
+    <p>Merci d'envoyer <strong>92,00 €</strong> à <strong>@ktalabs</strong> via PayPal, en choisissant l'option «Proches / Amis-famille» afin d'éviter les frais.</p>
+    <p>Une fois le paiement envoyé, tu peux nous le signaler directement depuis la page de suivi de ta commande. Tu recevras un email de confirmation dès que le paiement sera vérifié.</p>
+    <a class="track-btn" href="https://kta-labs.github.io/ktalabs.com/suivi.html?email=nathand112008%40gmail.com&order=CMD-284">Suivre ma commande</a>
+  </div>
+  <div class="footer">KTA Labs — Produits destinés exclusivement à un usage de recherche en laboratoire. Non destinés à la consommation humaine ou animale.</div>
+</div>
+</body>
+</html>
