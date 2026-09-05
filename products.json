@@ -132,8 +132,7 @@
     ],
     "image": "images/kit-reta20-v2.jpg",
     "tallyLabel": "Kit de reconstitution + injection Retatrutide 20MG",
-    "tallyQtyField": "qte_kit_reta20",
-    "prixPromo": 104
+    "tallyQtyField": "qte_kit_reta20"
   },
   {
     "sku": "kit-ghk",
