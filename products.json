@@ -21,7 +21,8 @@
     "ficheId": "retatrutide",
     "image": "images/reta-20mg-v2.jpg",
     "tallyLabel": "Retatrutide 20MG",
-    "tallyQtyField": "qte_reta20"
+    "tallyQtyField": "qte_reta20",
+    "prixPromo": 92
   },
   {
     "sku": "ghk",
