@@ -1,11 +1,11 @@
 {
-  "actif": true,
-  "titre": "Promotion sur le Retatrutide 20MG",
-  "texte": "Maintenant à 92 €",
+  "actif": false,
+  "titre": "",
+  "texte": "",
   "code": "",
-  "produit": "Retatrutide 20MG",
-  "prixPromo": 92,
-  "expiration": "2026-09-09",
+  "produit": null,
+  "prixPromo": null,
+  "expiration": null,
   "restant": null,
-  "misAJour": "2026-09-07T18:16:16.465Z"
+  "misAJour": "2026-09-10T16:35:48.550Z"
 }
