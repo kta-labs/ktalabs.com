@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page introuvable — KTA Labs</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="images/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="images/icon-512.png" sizes="512x512">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+<meta name="theme-color" content="#16204a">
+<style>
+  :root {
+    --black: #16204a;
+    --navy-deep: #0e1730;
+    --blue-accent: #4d6fb8;
+    --blue-light: #8fb2e8;
+    --grey-text: #6b7280;
+    --border: #e8eaf1;
+    --bg: #f8f9fc;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    background: radial-gradient(circle at 50% 0%, #1c2a5c 0%, var(--navy-deep) 55%, #0a1226 100%);
+    color: #fff;
+    text-align: center;
+    padding: 24px;
+  }
+  .wrap { max-width: 480px; }
+  .logo-chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    border-radius: 16px;
+    padding: 10px 18px;
+    margin-bottom: 32px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+  }
+  .logo-chip img { height: 40px; display: block; }
+  .code {
+    font-size: 15px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--blue-light);
+    margin-bottom: 14px;
+    font-weight: 700;
+  }
+  h1 {
+    font-size: 30px;
+    line-height: 1.3;
+    margin: 0 0 16px;
+    font-weight: 700;
+  }
+  p {
+    color: #aab4d4;
+    font-size: 15px;
+    line-height: 1.6;
+    margin: 0 0 34px;
+  }
+  .actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  a.btn {
+    display: inline-block;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14.5px;
+    padding: 14px 26px;
+    border-radius: 999px;
+    transition: transform .15s;
+  }
+  a.btn:hover { transform: translateY(-2px); }
+  a.btn.primary {
+    background: #fff;
+    color: var(--black);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  }
+  a.btn.secondary {
+    background: rgba(255,255,255,0.06);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.18);
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="logo-chip"><img src="images/logo.png" alt="KTA Labs"></div>
+    <div class="code">Erreur 404</div>
+    <h1>Cette page n'existe pas ou plus.</h1>
+    <p>Le lien est peut-être cassé ou la page a été déplacée. Retourne à l'accueil ou consulte le catalogue.</p>
+    <div class="actions">
+      <a class="btn primary" href="/">Accueil</a>
+      <a class="btn secondary" href="/catalogue.html">Voir les peptides</a>
+    </div>
+  </div>
+</body>
+</html>
