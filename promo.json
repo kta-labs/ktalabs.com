@@ -1,11 +1,11 @@
 {
-  "actif": true,
-  "titre": "Promotion sur le GHK-CU 50MG",
-  "texte": "Maintenant à 30 €",
+  "actif": false,
+  "titre": "",
+  "texte": "",
   "code": "",
-  "produit": "GHK-CU 50MG",
-  "prixPromo": 30,
-  "expiration": "2026-10-06",
+  "produit": null,
+  "prixPromo": null,
+  "expiration": null,
   "restant": null,
-  "misAJour": "2026-09-30T16:49:06.383Z"
+  "misAJour": "2026-09-30T16:49:29.563Z"
 }
