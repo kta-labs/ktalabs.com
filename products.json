@@ -33,8 +33,7 @@
     "ficheId": "ghk-cu",
     "image": "images/ghk-cu-v2.jpg",
     "tallyLabel": "GHK-CU 50MG",
-    "tallyQtyField": "qte_ghk",
-    "prixPromo": 30
+    "tallyQtyField": "qte_ghk"
   },
   {
     "sku": "selank",
