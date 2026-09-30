@@ -33,7 +33,8 @@
     "ficheId": "ghk-cu",
     "image": "images/ghk-cu-v2.jpg",
     "tallyLabel": "GHK-CU 50MG",
-    "tallyQtyField": "qte_ghk"
+    "tallyQtyField": "qte_ghk",
+    "prixPromo": 30
   },
   {
     "sku": "selank",
@@ -45,7 +46,8 @@
     "ficheId": "selank",
     "image": "images/selank-10mg-v2.jpg",
     "tallyLabel": "Selank 10MG",
-    "tallyQtyField": "qte_selank"
+    "tallyQtyField": "qte_selank",
+    "prixPromo": 35
   },
   {
     "sku": "cjc",
