@@ -46,7 +46,8 @@
     "ficheId": "selank",
     "image": "images/selank-10mg-v2.jpg",
     "tallyLabel": "Selank 10MG",
-    "tallyQtyField": "qte_selank"
+    "tallyQtyField": "qte_selank",
+    "prixPromo": 35
   },
   {
     "sku": "cjc",
@@ -95,7 +96,8 @@
     "ficheId": "tesamorelin",
     "image": "images/tesamorelin-5mg-v5.jpg",
     "tallyLabel": "Tesamorelin 5MG",
-    "tallyQtyField": "qte_tesa5"
+    "tallyQtyField": "qte_tesa5",
+    "prixPromo": 40
   },
   {
     "sku": "amino10",
