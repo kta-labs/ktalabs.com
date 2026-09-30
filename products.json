@@ -95,7 +95,8 @@
     "ficheId": "tesamorelin",
     "image": "images/tesamorelin-5mg-v5.jpg",
     "tallyLabel": "Tesamorelin 5MG",
-    "tallyQtyField": "qte_tesa5"
+    "tallyQtyField": "qte_tesa5",
+    "prixPromo": 40
   },
   {
     "sku": "amino10",
