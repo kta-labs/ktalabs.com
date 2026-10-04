@@ -34,7 +34,8 @@
     "image": "images/ghk-cu-v2.jpg",
     "tallyLabel": "GHK-CU 50MG",
     "tallyQtyField": "qte_ghk",
-    "prixPromo": 30
+    "prixPromo": 30,
+    "promoFin": "2026-10-06"
   },
   {
     "sku": "selank",
@@ -47,7 +48,8 @@
     "image": "images/selank-10mg-v2.jpg",
     "tallyLabel": "Selank 10MG",
     "tallyQtyField": "qte_selank",
-    "prixPromo": 35
+    "prixPromo": 35,
+    "promoFin": "2026-10-06"
   },
   {
     "sku": "cjc",
@@ -97,7 +99,8 @@
     "image": "images/tesamorelin-5mg-v5.jpg",
     "tallyLabel": "Tesamorelin 5MG",
     "tallyQtyField": "qte_tesa5",
-    "prixPromo": 40
+    "prixPromo": 40,
+    "promoFin": "2026-10-06"
   },
   {
     "sku": "amino10",
