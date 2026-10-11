@@ -33,7 +33,9 @@
     "ficheId": "ghk-cu",
     "image": "images/ghk-cu-v2.jpg",
     "tallyLabel": "GHK-CU 50MG",
-    "tallyQtyField": "qte_ghk"
+    "tallyQtyField": "qte_ghk",
+    "prixPromo": 25,
+    "promoFin": "2026-11-01"
   },
   {
     "sku": "selank",
@@ -45,7 +47,9 @@
     "ficheId": "selank",
     "image": "images/selank-10mg-v2.jpg",
     "tallyLabel": "Selank 10MG",
-    "tallyQtyField": "qte_selank"
+    "tallyQtyField": "qte_selank",
+    "prixPromo": 30,
+    "promoFin": "2026-11-01"
   },
   {
     "sku": "cjc",
@@ -57,7 +61,9 @@
     "ficheId": "cjc-ipamorelin",
     "image": "images/cjc-ipamorelin-v2.jpg",
     "tallyLabel": "CJC 1295+Ipamorelin 10MG",
-    "tallyQtyField": "qte_cjc"
+    "tallyQtyField": "qte_cjc",
+    "prixPromo": 50,
+    "promoFin": "2026-11-01"
   },
   {
     "sku": "mt1",
@@ -94,7 +100,9 @@
     "ficheId": "tesamorelin",
     "image": "images/tesamorelin-5mg-v5.jpg",
     "tallyLabel": "Tesamorelin 5MG",
-    "tallyQtyField": "qte_tesa5"
+    "tallyQtyField": "qte_tesa5",
+    "prixPromo": 35,
+    "promoFin": "2026-11-01"
   },
   {
     "sku": "amino10",
@@ -182,7 +190,9 @@
     ],
     "image": "images/kit-ghk-v2.jpg",
     "tallyLabel": "Kit de reconstitution + injection GHK-CU 50MG",
-    "tallyQtyField": "qte_kit_ghk"
+    "tallyQtyField": "qte_kit_ghk",
+    "prixPromo": 40,
+    "promoFin": "2026-11-01"
   },
   {
     "sku": "kit-cjc",
@@ -207,7 +217,9 @@
     ],
     "image": "images/kit-cjc-v2.jpg",
     "tallyLabel": "Kit de reconstitution + injection CJC 1295+Ipamorelin 10MG",
-    "tallyQtyField": "qte_kit_cjc"
+    "tallyQtyField": "qte_kit_cjc",
+    "prixPromo": 70,
+    "promoFin": "2026-11-01"
   },
   {
     "sku": "kit-selank",
@@ -232,7 +244,9 @@
     ],
     "image": "images/kit-selank-v2.jpg",
     "tallyLabel": "Kit de reconstitution + injection Selank 10MG",
-    "tallyQtyField": "qte_kit_selank"
+    "tallyQtyField": "qte_kit_selank",
+    "prixPromo": 50,
+    "promoFin": "2026-11-01"
   },
   {
     "sku": "kit-mt1",
@@ -257,7 +271,9 @@
     ],
     "image": "images/kit-mt1-v2.jpg",
     "tallyLabel": "Kit de reconstitution + injection MT-1 10MG",
-    "tallyQtyField": "qte_kit_mt1"
+    "tallyQtyField": "qte_kit_mt1",
+    "prixPromo": 40,
+    "promoFin": "2026-11-01"
   },
   {
     "sku": "kit-mt2",
