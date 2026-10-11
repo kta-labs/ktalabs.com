@@ -1,11 +1,11 @@
 {
-  "actif": false,
-  "titre": "",
-  "texte": "",
+  "actif": true,
+  "titre": "Promotion sur le Selank 10MG",
+  "texte": "Maintenant à 30 €",
   "code": "",
-  "produit": null,
-  "prixPromo": null,
-  "expiration": null,
+  "produit": "Selank 10MG",
+  "prixPromo": 30,
+  "expiration": "2026-11-01",
   "restant": null,
-  "misAJour": "2026-10-11T16:58:05.434Z"
+  "misAJour": "2026-10-11T16:59:02.302Z"
 }
