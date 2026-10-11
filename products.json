@@ -75,7 +75,9 @@
     "ficheId": "mt-1",
     "image": "images/mt-1-v2.jpg",
     "tallyLabel": "MT-1 10MG",
-    "tallyQtyField": "qte_mt1"
+    "tallyQtyField": "qte_mt1",
+    "prixPromo": 25,
+    "promoFin": "2026-11-01"
   },
   {
     "sku": "mt2",
@@ -115,7 +117,9 @@
     "ficheId": "5-amino-1mq",
     "image": "images/5-amino-1mq-10mg-v5.jpg",
     "tallyLabel": "5-Amino-1MQ 10MG",
-    "tallyQtyField": "qte_amino10"
+    "tallyQtyField": "qte_amino10",
+    "prixPromo": 30,
+    "promoFin": "2026-11-01"
   },
   {
     "sku": "kit-reta10",
