@@ -1,11 +1,11 @@
 {
-  "actif": false,
-  "titre": "",
-  "texte": "",
-  "code": "",
+  "actif": true,
+  "titre": "Code promo FLASH",
+  "texte": "Bénéficier de 50% de réduction avec le code promo FLASH",
+  "code": "FLASH",
   "produit": null,
   "prixPromo": null,
   "expiration": null,
   "restant": null,
-  "misAJour": "2026-11-11T12:02:22.705Z"
+  "misAJour": "2026-11-11T12:10:24.636Z"
 }
