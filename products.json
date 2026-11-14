@@ -372,7 +372,7 @@
     "categorie": "Packs",
     "prix": 230,
     "prixBarre": 270,
-    "stock": null,
+    "stock": 0,
     "disponibilite": "En stock",
     "contenu": [
       "2 Retatrutide 20mg",
