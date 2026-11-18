@@ -1,11 +1,11 @@
 {
-  "actif": false,
-  "titre": "",
-  "texte": "",
-  "code": "",
+  "actif": true,
+  "titre": "Code promo LAST",
+  "texte": "Bénéficier de 60% de réduction avec le code promo LAST",
+  "code": "LAST",
   "produit": null,
   "prixPromo": null,
   "expiration": null,
   "restant": null,
-  "misAJour": "2026-11-18T20:08:24.595Z"
+  "misAJour": "2026-11-18T20:12:24.548Z"
 }
